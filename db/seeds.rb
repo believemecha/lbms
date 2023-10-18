@@ -10,3 +10,8 @@ super_admin = User.find_or_initialize_by(email: "believebharat@gmail.com")
 super_admin.password = "Pass@2023"
 super_admin.role = "Admin"
 super_admin.save
+
+normal_user = User.find_or_initialize_by(email: "normal@gmail.com")
+normal_user.password = "Pass@2023"
+normal_user.role = "User"
+super_admin.save
