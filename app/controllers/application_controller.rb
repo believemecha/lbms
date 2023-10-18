@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
     # of to the admin dashboard if the user is an administrator
     #
     def after_sign_in_path_for(resource)
-        current_user.admin? ? admin_dashboard_path : home_home_path
+        current_user.admin? ? admin_dashboard_path : '/home'
     end
   
     def authenticate_admin_user!
-      redirect_to root_path if !current_user.admin?
+      redirect_to root_path if (!current_user.present? || !current_user.admin?)
     end
 
     def destroy_admin_user
