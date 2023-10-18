@@ -80,7 +80,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
-  database: lbms_production
-  username: lbms
-  password: <%= ENV['LBMS_DATABASE_PASSWORD'] %>
+  url: 'postgres://lbms:1njSOtsNKAJTpJLzKUsAKiMnWBI6IOEH@dpg-cknscfprfc9c739rpkig-a.oregon-postgres.render.com/lbms_production'
