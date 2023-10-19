@@ -1,4 +1,4 @@
-<img src="/logo.png" style:"width:100%;max-height:100px" >
+<%= image_tag(url_for("/logo.png"), style: "width:100%;max-height:200px") %>
 <p>Hello <%= @email %>!</p>
 
 <% if @resource.try(:unconfirmed_email?) %>
