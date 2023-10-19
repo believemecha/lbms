@@ -72,7 +72,7 @@ Rails.application.configure do
   #for devise mailings
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'lbsingh732196@gmail.com'}
+  config.action_mailer.default_options = {from: 'lbsingh732196@gmail.com', reply_to: 'lbsingh732196@gmail.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
