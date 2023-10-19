@@ -10,7 +10,14 @@ module Lbms
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.base_url = case Rails.env
+    when 'development'
+      "http://localhost:3001" # Development URL
+    when 'production'
+      "https://lbms-ajua.onrender.com" # Production URL
+    else
+      "https://lbms-ajua.onrender.com/home" # Default or other environment URL
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
