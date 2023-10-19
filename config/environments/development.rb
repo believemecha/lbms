@@ -67,4 +67,20 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+
+  #for devise mailings
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'lbsingh732196@gmail.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'gmail.com',
+  user_name:            'lbsingh732196@gmail.com',
+  password:             'hyzv ztok ptcg hxzc',
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+  config.action_mailer.default_url_options = {:host =>'localhost:3001'}
 end
