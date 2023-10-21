@@ -100,7 +100,7 @@ Rails.application.configure do
   port:                 587,
   domain:               'gmail.com',
   user_name:            'lbsingh732196@gmail.com',
-  password:             'hyzv ztok ptcg hxzc',
+  password:             'gzzw eabf bilj dths',
   authentication:       'plain',
   enable_starttls_auto: true  }
   config.action_mailer.default_url_options = { host: 'lbms-ajua.onrender.com' }
