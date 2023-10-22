@@ -7,4 +7,15 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get "/home", to: "home#home"
   ActiveAdmin.routes(self)
+
+  namespace :api, defaults: { format: :json } do
+    devise_for :users, controllers: {
+      sessions: 'api/sessions'
+    }
+
+    # Other API routes...
+  end
+
+
+  
 end
