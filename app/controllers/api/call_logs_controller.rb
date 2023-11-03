@@ -34,14 +34,17 @@ class Api::CallLogsController < ApplicationController
               call_start_time: log[:start_time],
               call_end_time: log[:end_time],
               duration: log[:duration],  # Duration in seconds (1 minute to 30 minutes)
-              name: log[:name]
+              name: log[:name],
+              call_type: log[:call_type].downcase
             }
         end
 
         if CallLog.insert_all(call_logs_data)
-            render json: {status: true, message: CallLog.where(user_id: @user.id).last}
+            last_synced = CallLog.where(user_id: @user.id).order(call_start_time: :desc).first
+            @user.update(last_synced: last_synced.call_start_time)
+            render json: {status: true, data: @user}
         else
-            render json: {status: true, message: "Something went wrong"}
+            render json: {status: false, data: nil}
         end
     end 
   end
