@@ -1,7 +1,5 @@
 # app/controllers/api/sessions_controller.rb
 class Api::CallLogsController < ApplicationController
-    protect_from_forgery with: :null_session
-
     def update_details
         id = params[:id]
         email = params[:email]
