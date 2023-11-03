@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_02_033037) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_03_165631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_033037) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
+  create_table "call_logs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "phone_number"
+    t.datetime "call_start_time"
+    t.datetime "call_end_time"
+    t.integer "duration"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_call_logs_on_user_id"
   end
 
   create_table "libraries", force: :cascade do |t|

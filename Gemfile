@@ -77,3 +77,8 @@ gem 'devise'
 gem 'sassc'
 gem 'activeadmin'
 
+gem 'faker', '~> 2.17'
+
+gem 'kaminari'
+
+
