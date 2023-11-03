@@ -81,4 +81,7 @@ gem 'faker', '~> 2.17'
 
 gem 'kaminari'
 
+gem 'chartkick'
+
+
 

@@ -8,24 +8,21 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Phone Number</th>
-        <th>Call Start Time</th>
-        <th>Call End Time</th>
-        <th>Duration (seconds)</th>
         <th>Name</th>
+        <th>Duration (seconds)</th>
+        <th>Type</th>
+        <th>At</th>
       </tr>
     </thead>
     <tbody>
       <% @call_logs.each do |call_log| %>
         <tr>
-          <td><%= call_log.id %></td>
-          <td><%= call_log.phone_number %></td>
-          <td><%= call_log.call_start_time.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M %p %Z') %></td>
-          <td><%= call_log.call_end_time.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M %p %Z') %></td>          
+          <td> <a href="<%='log_detail/'+ call_log.id.to_s%>"><%= call_log.phone_number %> </a></td>
+          <td><%= call_log.name || 'NA' %></td>
           <td><%= call_log.duration %></td>
-          <td><%= call_log.name %></td>
-          <!-- Add more columns if needed -->
+          <td><%= call_log.call_type %></td>
+          <td><%= call_log.call_start_time.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M %p %Z') %></td>
         </tr>
       <% end %>
     
