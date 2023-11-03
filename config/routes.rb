@@ -4,10 +4,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root to: 'home#index'
+  root to: 'dashboard#index'
   get "/home", to: "home#home"
   post 'call_logs/update_details', to: 'api/call_logs#update_details'
   post 'call_logs/sync_logs', to: 'api/call_logs#sync_logs'
+
+  get '/dashboard/logs', to: 'dashboard#logs', as: 'dashboard_logs'
+  get '/dashboard', to: 'dashboard#index', as: 'dashboard_index'
 
   ActiveAdmin.routes(self)
 
