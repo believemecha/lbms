@@ -1,0 +1,68 @@
+<div class="container w-100">
+<div class="row">
+        <div class="col-md-6">
+        <%= image_tag('poster.jpeg', class: 'img-fluid', alt: 'Call Analysis Image') %>
+        </div>
+        <div class="col-md-6">
+            <div class="text-center mt-5">
+                <h1>Welcome to Communication Growth</h1>
+                <p>Revolutionize your call analysis with our powerful tools.</p>
+                <a href="users/sign_in" class="btn btn-primary text-white">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Duration of Calls Over Time</h5>
+        <%= line_chart @call_data, xtitle: "Time", ytitle: "Duration (seconds)" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Distribution of Auto-Replies</h5>
+        <%= pie_chart @auto_reply_data %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Top  Performers of  the week</h5>
+        <%= column_chart @top_performers_data, xtitle: "Performers", ytitle: "Call Counts" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Distribution of Leads by Source</h5>
+        <%= pie_chart @lead_sources_data %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

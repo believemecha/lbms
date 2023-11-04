@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: 'dashboard#index'
   get "/home", to: "home#home"
+  get "/india", to: "home#india"
+
   post 'call_logs/update_details', to: 'api/call_logs#update_details'
   post 'call_logs/sync_logs', to: 'api/call_logs#sync_logs'
 

@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
 
     def logs
         redirect_to '/home' if current_user.admin?
@@ -8,8 +8,13 @@ class DashboardController < ApplicationController
     end
 
     def index
-        redirect_to '/home' if current_user.admin?
+        if !current_user.present?
+            redirect_to '/india'
+            return
+        end
         
+        redirect_to '/home' if current_user.admin?
+
         @call_logs = CallLog.where(user_id: current_user.id)
         @total_calls = @call_logs.count
         @total_duration = @call_logs.sum(:duration)
