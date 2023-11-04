@@ -20,6 +20,9 @@ class DashboardController < ApplicationController
         @total_duration = @call_logs.sum(:duration)
         @average_duration = @call_logs.average(:duration).to_i
         @longest_call = @call_logs.order(duration: :desc).first
+
+        @summary = @call_logs.group(:name).count.sort_by { |name, count| -count }.select {|name,count| name.present?}
+
     end
 
     def log_detail

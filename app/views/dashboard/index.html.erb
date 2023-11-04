@@ -42,4 +42,34 @@ Welcome to Dashboard
       </div>
     </div>
   </div>
-</div>
+
+    <div class="container mt-4" style="border: 1px solid #ccc; max-height: 400px; overflow-y: scroll; ">
+    <p>Sumary</p>
+    <div class="card p-2 my-1">
+        <div class="row">
+          <div class="col">
+            <h5>
+              Person 
+            </h5>
+          </div>
+          <div class="col">
+          <h5 style="color: black">Total Calls</h5>
+          </div>
+        </div>
+    </div>
+    <% @summary.each_with_index do |item,index| %>
+      <div class="card p-2 my-1">
+        <div class="row">
+          <div class="col">
+            <h5>
+              <%= item[0] %> 
+            </h5>
+          </div>
+          <div class="col">
+          <h5 style="color: blue"><%= item[1] %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+ </div>
