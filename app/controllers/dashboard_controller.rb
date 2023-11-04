@@ -12,7 +12,7 @@ class DashboardController < ApplicationController
             redirect_to '/india'
             return
         end
-        
+
         redirect_to '/home' if current_user.admin?
 
         @call_logs = CallLog.where(user_id: current_user.id)
@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
         @log = CallLog.find_by_id(params[:id])
         redirect_to root_path if !@log.present?
         @phone_number = @log.phone_number  # Get the phone number from the request
-        @call_logs = CallLog.where(user_id: current_user.id, phone_number: @phone_number)
+        @call_logs = CallLog.where(user_id: current_user.id, phone_number: @phone_number).order(call_start_time: :asc)
         
         # Generate insights specific to the selected phone number
         @total_calls = @call_logs.count

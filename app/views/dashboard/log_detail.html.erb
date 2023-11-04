@@ -1,7 +1,7 @@
 <!-- app/views/dashboard/log_detail.html.erb -->
 
 <div class="container">
-  <h2 class="mt-5">Phone Number: <%= @phone_number %></h2>
+  <h2 class="mt-5"><%= (@log.name || @phone_number) %></h2>
 
   <div class="row mt-4">
     <div class="col-md-4">
@@ -42,6 +42,8 @@
       </div>
     </div>
   </div>
+
+  <%= render partial: "call_timeline", locals: { data: @call_logs } %>
 
  <div class="row mt-4">
   <div class="col-md-12">
