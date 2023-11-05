@@ -1,7 +1,7 @@
 <%
 messages = []
 data.each do |log|
-  call_start_time = log.call_start_time
+  call_start_time = log.call_start_time.in_time_zone("Mumbai")
   now = Time.now
 
   if call_start_time.to_date == now.to_date

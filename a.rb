@@ -12,3 +12,8 @@ uid = User.first.id
 end
 
 CallLog.insert_all(call_logs_data)
+
+User.all.each do |u|
+  first_name = u.email.split('@')[0]
+  u.update(first_name: first_name)
+end

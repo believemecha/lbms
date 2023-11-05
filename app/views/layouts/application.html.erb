@@ -22,12 +22,19 @@
   #navBar.*{
     background: white !important;
   }
+    .logout-button {
+    background-color: #ff0000; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px; /* Adjust the padding to change the button size */
+    cursor: pointer;
+  }
   </style>
 
   
 
   <body>
-    <div class="container m-0 p-0">
+    <div class="">
        <% if current_user && !current_user.admin? %>
           <div style="" id="navBar">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -56,10 +63,15 @@
               </li>
 
             </ul>
+            <!--
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn  my-2 my-sm-0" type="submit">Search</button>
             </form>
+            --!>
+            <% if user_signed_in? %>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { no_turbolink: true }, class: "logout-button" %>
+          <% end %>
           </div>
         </nav>
           </div>

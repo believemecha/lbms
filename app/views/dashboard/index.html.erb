@@ -37,7 +37,11 @@ Welcome to Dashboard
       <div class="card mt-2">
         <div class="card-body">
           <h5 class="card-title">Longest Call</h5>
-          <p class="card-text"><%= @longest_call.try(:duration) %> seconds</p>
+          <p class="card-text">
+             <%= @longest_call.try(:duration) %> seconds , <%=@longest_call.try(:call_type)%> 
+             <br>
+             with <%=@longest_call.try(:name)%> on <%=@longest_call.try(:call_start_time)%>
+           </p>
         </div>
       </div>
     </div>
