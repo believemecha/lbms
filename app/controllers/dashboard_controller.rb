@@ -3,9 +3,37 @@ class DashboardController < ApplicationController
 
     def logs
         redirect_to '/home' if current_user.admin?
-        @call_logs = CallLog.where(user_id: current_user.id).order(created_at: :desc)
+      
+        # Start with the base query
+        @call_logs = CallLog.where(user_id: current_user.id)
+      
+        # Apply filters
+        if params[:start_date].present?
+          start_date = Date.parse(params[:start_date])
+          @call_logs = @call_logs.where("call_start_time >= ?", start_date.beginning_of_day)
+        end
+      
+        if params[:end_date].present?
+          end_date = Date.parse(params[:end_date])
+          @call_logs = @call_logs.where("call_start_time <= ?", end_date.end_of_day)
+        end
+      
+        if params[:call_types].present?
+          call_types = params[:call_types].split(",")
+          @call_logs = @call_logs.where(call_type: call_types)
+        end
+      
+        if params[:phone_number].present?
+          @call_logs = @call_logs.where("phone_number LIKE ?", "%#{params[:phone_number]}%")
+        end
+      
+        # Order the results by created_at in descending order
+        @call_logs = @call_logs.order(call_start_time: :desc)
+      
+        # Paginate the results
         @call_logs = Kaminari.paginate_array(@call_logs).page(params[:page]).per(40)
-    end
+      end
+      
 
     def index
         if !current_user.present?
