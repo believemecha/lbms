@@ -12,8 +12,14 @@ class User < ApplicationRecord
   end
 
   has_many :call_logs
+  belongs_to :organization
 
   VALID_TYPES = %w[Admin User].freeze
+
+  enum roles:{
+    admin: "Admin",
+    user: "User"
+  }
 
   VALID_TYPES.each do |user_role|
     # def admin?
