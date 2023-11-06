@@ -38,6 +38,20 @@ ActiveAdmin.register Organization do
         # Add more columns as needed to display user information
       end
     end
+
+    panel "Whatsapp Templates" do
+      table_for organization.whatsapp_templates do
+        column :name
+        column :weekday
+        column :body
+        column :header
+        column :footer
+        column :image_url
+        column :send_website_url
+
+        # Add more columns as needed to display user information
+      end
+    end
   end
 
 end
