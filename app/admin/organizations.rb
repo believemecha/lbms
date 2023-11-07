@@ -5,7 +5,7 @@ ActiveAdmin.register Organization do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :phone_number, :email_address, :website, :whatsapp_number, :address, :logo_url
+  permit_params :name, :phone_number, :email_address, :website, :whatsapp_number, :address, :logo_url,:owner_id
   #
   # or
   #
@@ -14,6 +14,22 @@ ActiveAdmin.register Organization do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  form do |f|
+    f.inputs "Organization Details" do
+      f.input :name
+      f.input :phone_number
+      f.input :email_address
+      f.input :website
+      f.input :whatsapp_number
+      f.input :address
+      f.input :logo_url
+      f.input :owner_id, as: :select, collection: User.all.map{|x| ["#{x.first_name} (#{x.email})",x.id]}, include_blank: 'Select Owner' # Assuming User is your User model
+    end
+
+    f.actions
+  end
+
   show do
     attributes_table do
       row :name
@@ -23,6 +39,7 @@ ActiveAdmin.register Organization do
       row :whatsapp_number
       row :address
       row :logo_url
+      row :owner
     end
 
     panel "Users in this Organization" do

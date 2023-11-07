@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   get '/dashboard/log_detail/:id', to: 'dashboard#log_detail'
 
 
+  ##Partners
+  get '/partner/dashboard', to: 'partners/dashboard#index'
+
+
+
   ActiveAdmin.routes(self)
 
 

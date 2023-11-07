@@ -43,6 +43,8 @@ class DashboardController < ApplicationController
 
         redirect_to '/home' if current_user.admin?
 
+        redirect_to '/partner/dashboard' if current_user.partner?
+
         @call_logs = CallLog.where(user_id: current_user.id)
         @total_calls = @call_logs.count
         @total_duration = @call_logs.sum(:duration)

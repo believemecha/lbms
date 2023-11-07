@@ -13,17 +13,20 @@ class User < ApplicationRecord
 
   has_many :call_logs
   belongs_to :organization
+  has_many :child_organizations, class_name: "Organization", foreign_key: "owner_id"
 
-  VALID_TYPES = %w[Admin User].freeze
+  VALID_TYPES = %w[Admin User Partner].freeze
 
   enum roles:{
     admin: "Admin",
-    user: "User"
+    user: "User",
+    partner: "Partner"
   }
 
   VALID_TYPES.each do |user_role|
     # def admin?
     # def user?
+    # def partner? 
     define_method "#{user_role.underscore}?" do
       role == user_role
     end

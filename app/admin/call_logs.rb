@@ -9,6 +9,8 @@ ActiveAdmin.register CallLog do
   #
   # or
   #
+  actions :index,:show
+
   # permit_params do
   #   permitted = [:user_id, :phone_number, :call_start_time, :call_end_time, :duration, :name, :call_type]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
