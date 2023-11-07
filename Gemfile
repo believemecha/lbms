@@ -84,4 +84,6 @@ gem 'kaminari'
 gem 'chartkick'
 
 
+gem 'byebug'
+
 
