@@ -40,8 +40,9 @@ class Api::CallLogsController < ApplicationController
             }
         end
         
-        created_till = CallLog.where(user_id: @user.id).order(created_at: :desc).first.try(:created_at)
-        if CallLog.insert_all(call_logs_data)
+        logs_created = CallLog.create(call_logs_data)
+       
+        if logs_created.present?
             last_synced = CallLog.where(user_id: @user.id).order(call_start_time: :desc).first
             @user.update(last_synced: last_synced.call_start_time)
             
@@ -49,9 +50,6 @@ class Api::CallLogsController < ApplicationController
                 render json: {status: true, data: @user}
                 return
             end
-
-            logs_created = CallLog.where(user_id: @user.id).where('created_at > ?', created_till.present? ? created_till : Time.now)
-            
 
             payload = []
             logs_created.each  do |log|
@@ -69,7 +67,8 @@ class Api::CallLogsController < ApplicationController
                 }
                 payload << obj
             end
-            send_log_to_consumer_portal(@user.organization.try(:webhook_url),payload.to_json)
+            render json: {status: true, data: @user}
+            send_log_to_consumer_portal(@user.organization.try(:webhook_url),payload.to_json) if payload.length > 0
         else
             render json: {status: false, data: nil}
         end
