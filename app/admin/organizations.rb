@@ -5,7 +5,7 @@ ActiveAdmin.register Organization do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :phone_number, :email_address, :website, :whatsapp_number, :address, :logo_url,:owner_id
+  permit_params :name, :phone_number, :email_address, :website, :whatsapp_number, :address, :logo_url,:owner_id,:webhook_url
   #
   # or
   #
@@ -24,6 +24,7 @@ ActiveAdmin.register Organization do
       f.input :whatsapp_number
       f.input :address
       f.input :logo_url
+      f.input :webhook_url
       f.input :owner_id, as: :select, collection: User.all.map{|x| ["#{x.first_name} (#{x.email})",x.id]}, include_blank: 'Select Owner' # Assuming User is your User model
     end
 
@@ -40,6 +41,7 @@ ActiveAdmin.register Organization do
       row :address
       row :logo_url
       row :owner
+      row :webhook_url
     end
 
     panel "Users in this Organization" do

@@ -1,5 +1,6 @@
 # app/controllers/api/sessions_controller.rb
 class Api::CallLogsController < ApplicationController
+    include WebhookHelper
     def update_details
         id = params[:id]
         email = params[:email]
@@ -38,11 +39,37 @@ class Api::CallLogsController < ApplicationController
               call_type: log[:call_type].downcase
             }
         end
-
+        
+        created_till = CallLog.where(user_id: @user.id).order(created_at: :desc).first.try(:created_at)
         if CallLog.insert_all(call_logs_data)
             last_synced = CallLog.where(user_id: @user.id).order(call_start_time: :desc).first
             @user.update(last_synced: last_synced.call_start_time)
-            render json: {status: true, data: @user}
+            
+            if !@user.try(:organization).try(:webhook_url).present?
+                render json: {status: true, data: @user}
+                return
+            end
+
+            logs_created = CallLog.where(user_id: @user.id).where('created_at > ?', created_till.present? ? created_till : Time.now)
+            
+
+            payload = []
+            logs_created.each  do |log|
+                obj = {
+                  id: log.id,
+                  user: @user.email,
+                  phone_number: log.phone_number,
+                  start_time: log.call_start_time,
+                  end_time: log.call_end_time,
+                  duration: log.duration,
+                  name: log.name,
+                  call_type: log.call_type.try(:downcase),
+                  created_at: log.created_at,
+                  updated_at: log.updated_at
+                }
+                payload << obj
+            end
+            send_log_to_consumer_portal(@user.organization.try(:webhook_url),payload.to_json)
         else
             render json: {status: false, data: nil}
         end
