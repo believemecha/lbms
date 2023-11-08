@@ -7,7 +7,8 @@ class CallLog < ApplicationRecord
     enum call_type:{
         outgoing: 0,
         incoming: 1,
-        missed: 2
+        missed: 2,
+        declined: 3
     }
 
     def self.ransackable_attributes(auth_object = nil)

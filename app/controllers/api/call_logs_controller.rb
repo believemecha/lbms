@@ -29,6 +29,9 @@ class Api::CallLogsController < ApplicationController
         call_logs_data = []
         uid = @user.id
         logs.each do |log|
+            call_type = nil
+            call_type = log[:call_type].to_s.downcase if CallLog.call_types.keys.include?(log[:call_type].to_s.downcase)
+            call_type = "declined" if !call_type.present?
             call_logs_data << {
               user_id: uid,  # Replace 'User' with your actual User model
               phone_number: log[:number],
@@ -36,7 +39,7 @@ class Api::CallLogsController < ApplicationController
               call_end_time: log[:end_time],
               duration: log[:duration],  # Duration in seconds (1 minute to 30 minutes)
               name: log[:name],
-              call_type: log[:call_type].downcase
+              call_type: call_type
             }
         end
         
