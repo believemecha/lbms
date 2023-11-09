@@ -66,7 +66,8 @@ class Api::CallLogsController < ApplicationController
                   name: log.name,
                   call_type: log.call_type.try(:downcase),
                   created_at: log.created_at,
-                  updated_at: log.updated_at
+                  updated_at: log.updated_at,
+                  user_phone_number: @user.phone.to_s
                 }
                 payload << obj
             end
