@@ -11,4 +11,8 @@ class Organization < ApplicationRecord
         ["users", "whatsapp_templates"]
     end
 
+    def call_logs
+        CallLog.where(user_id: users.pluck(:id))
+    end
+
 end
