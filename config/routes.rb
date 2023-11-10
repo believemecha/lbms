@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   get '/partner/dashboard', to: 'partners/dashboard#index'
 
 
+  # get
+
+
+
+
 
   ActiveAdmin.routes(self)
 
@@ -29,8 +34,10 @@ Rails.application.routes.draw do
       sessions: 'api/sessions'
     }
 
-    # Other API routes...
   end
+
+  post '/api/users/login', to: 'api/sessions#login'
+  post '/api/users/signup', to: 'api/sessions#signup'
 
 
   
