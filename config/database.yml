@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: planet_v1development
+  url: 'postgres://planet:4WzPPhe5Xz5aan7DcZdah1KCkds2VkwN@dpg-claesopm6hds739pcsl0-a.oregon-postgres.render.com/planet_fh39'
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

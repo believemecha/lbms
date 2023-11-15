@@ -14,9 +14,9 @@ module Lbms
     when 'development'
       "http://localhost:3001" # Development URL
     when 'production'
-      "https://lbms-ajua.onrender.com" # Production URL
+      "planetv1.onrender.com" # Production URL
     else
-      "https://lbms-ajua.onrender.com/home" # Default or other environment URL
+      "planetv1.onrender.com" # Default or other environment URL
     end
     # Configuration for the application, engines, and railties goes here.
     #
