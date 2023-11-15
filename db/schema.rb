@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_08_104951) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_184827) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,67 +28,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_104951) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
-  create_table "call_logs", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "phone_number"
-    t.datetime "call_start_time"
-    t.datetime "call_end_time"
-    t.integer "duration"
-    t.string "name"
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "call_type"
-    t.index ["user_id"], name: "index_call_logs_on_user_id"
-  end
-
-  create_table "libraries", force: :cascade do |t|
-    t.string "name"
-    t.string "location"
-    t.integer "capacity"
-    t.text "description"
-    t.integer "num_staff"
-    t.integer "num_books"
-    t.integer "num_members"
-    t.boolean "offers_membership"
-    t.boolean "has_cafeteria"
-    t.boolean "has_meeting_rooms"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "organizations", force: :cascade do |t|
-    t.string "name"
-    t.string "phone_number"
-    t.string "email_address"
-    t.string "website"
-    t.string "whatsapp_number"
-    t.string "address"
-    t.string "logo_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "owner_id"
-    t.string "webhook_url"
-  end
-
-  create_table "product_categories", force: :cascade do |t|
-    t.integer "name"
-    t.text "description"
-    t.string "keywords", default: [], array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.bigint "product_category_id"
-    t.string "name"
-    t.text "description"
-    t.string "image_url"
-    t.integer "max_price"
-    t.string "keywords", default: [], array: true
-    t.integer "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_category_id"], name: "index_products_on_product_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,36 +41,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_104951) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "role"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "first_name"
     t.string "last_name"
-    t.string "phone"
-    t.string "country_code"
+    t.integer "user_type"
+    t.integer "age"
+    t.string "phone_number"
+    t.integer "education_level"
+    t.string "area_of_interest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.datetime "last_synced"
-    t.integer "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "whatsapp_templates", force: :cascade do |t|
-    t.bigint "organization_id"
-    t.string "name"
-    t.string "body"
-    t.string "header"
-    t.string "footer"
-    t.string "image_url"
-    t.string "weekday"
-    t.boolean "send_website_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organization_id"], name: "index_whatsapp_templates_on_organization_id"
-  end
-
-  add_foreign_key "products", "product_categories"
 end

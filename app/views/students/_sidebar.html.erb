@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <style>
+
+        body {
+            font-family: "Lato", sans-serif;
+        }
+        .navba {
+            height: 100%;
+            background-color: #071a35;
+        }
+        .emblem{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sidebar {
+            height: 100%;
+            width: 90px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #071a35;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 13px;
+            white-space: nowrap;
+            border-radius: 10px;
+        }
+        
+        .sidebar a {
+            padding: 12px 8px 8px 33px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .sidebar a:hover {
+            color: #818181;
+        }
+        
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        
+        .material-icons,
+        .icon-text {
+            vertical-align: middle;
+            font size :18px;
+        }
+        
+        .material-icons {
+            padding-bottom: 3px;
+            color: white;
+            font-size:25px;
+        }
+        .material-symbols-outlined,
+        .icon-text {
+            vertical-align: middle;
+            font size :23px;
+        }
+        
+        .material-symbols-outlined {
+            padding-bottom: 3px;
+            color: white;
+            font-size:25px;
+        }
+        
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+            margin-left: 100px;
+        }
+        
+        @media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+            .sidebar a {
+                font-size: 21px;
+            }
+        }
+        .sidebar{
+          width: 75px;
+        }
+        .sidebar:hover .account_create {
+            margin-left: 2px !important; 
+        }
+        .fixed-size-image {
+            width:65px; /* Set the desired width */
+            height: 65px; /* Set the desired height */
+        }
+        .sign_out_btn {
+            float: right !important; /* Move the element to the right */
+            margin-right: 5px important; /* Add a margin of 5px to the right */
+          }
+        
+          .sign_out_btn a {
+            text-decoration: none; /* Remove underline from the link */
+            color: #ffffff; /* Set the text color to white */
+            font-family: Arial, sans-serif; /* Set the desired font family */
+            font-size: 16px; /* Set the font size to 16px */
+          }
+          .plr-1rem{
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+          }
+    </style>
+</head>
+
+<body>
+
+    <nav  class="navba d-flex align-items-center justify-content-between plr-1rem">
+      <span></span>
+      <span class="emblem">
+        <a class="navba-brand" style="font-size: 35px;">
+            <span style="color: white; font-weight: bold; font-style: italic;">Razor </span> 
+            <span style="font-weight: bold; font-style: normal; color: #ff0066;">Sharp</span>
+        </a>
+      </span>  
+      <span class="sign_out_btn">
+        <%= link_to destroy_user_session_path, method: :delete, class: "sign_out_btn" do %>
+          <span class="material-symbols-outlined">logout</span> Logout
+        <% end %>
+      </span>
+    </nav>
+
+    <div id="mySidebar" class="sidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
+        <img class="fixed-size-image" src="https://www.freeiconspng.com/uploads/physical-therapy-icon-4.png" alt="">
+        <div class="account_create" href="#" style="margin-bottom: 22px;margin-top: 30px; margin-left:10px; border-bottom: 2px solid white">
+            <i class="material-icons" style="font-size: 63px;">account_circle</i>
+        </div>
+        <div class= "mt-4" style="text-decoration:underline;">
+            <a href="#"><span class="material-symbols-outlined"> dashboard_customize </span><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</span></a>
+            <a href="#"><span><span class="material-symbols-outlined">home</span><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Home</span></a>
+            <a href="#"><span><i class="material-icons">info</i><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Profile</span></a>
+            <a href="#"><span class="material-symbols-outlined">local_activity</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Activity Center</a></span></a>
+            <a href="#"><span class="material-symbols-outlined"> menu_book </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;MCQs</a></span></a>
+            <a href="#"><span class="material-symbols-outlined">trending_up</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;My Progress</a></span></a>
+            <a href="#"><span class="material-symbols-outlined">finance_chip</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Rewards And Coins</a></span></a>
+            <a href="#"><span class="material-symbols-outlined"> stadia_controller</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;SparkX Game</a></span></a>
+            <a href="#"><span class="material-symbols-outlined"> groups_3</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Collaborated Colleges</span></a>
+            <a href="#"><span class="material-symbols-outlined"> contact_support </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Contact Us</span></a>
+            <a href="#"><span class="material-symbols-outlined"> person_raised_hand </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Raise An Issue<span></a>
+            <a href="#"><span class="material-symbols-outlined"> help </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Help<span></a>
+        </div>
+    </div>
+
+    <div id="main">
+        <h2>Open/Collapse Sidebar on Hover</h2>
+    </div>
+
+    <script>
+        var mini = true;
+
+        function toggleSidebar() {
+            if (mini) {
+                console.log("opening sidebar");
+                document.getElementById("mySidebar").style.width = "285px";
+                document.getElementById("main").style.marginLeft = "285px";
+                this.mini = false;
+            } else {
+                console.log("closing sidebar");
+                document.getElementById("mySidebar").style.width = "78px";
+                document.getElementById("main").style.marginLeft = "78px";
+                this.mini = true;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

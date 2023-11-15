@@ -1,38 +1,18 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :role, :first_name, :last_name, :phone, :country_code,:organization_id
 
-  actions :edit,:new,:update,:index,:show
-
-  index do
-    selectable_column
-    id_column
-    column :organization
-    column :email
-    column :phone_number
-    column :first_name
-    column :last_name
-    column :role
-    column :created_at
-    actions
-  end
-
-  filter :email
-  filter :role
-  filter :created_at
-
-  form do |f|
-    f.inputs "User Details" do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
-      f.input :role, as: :select, collection: User.roles
-      f.input :first_name
-      f.input :last_name
-      f.input :phone
-      f.input :country_code
-      f.input :organization_id, as: :select, collection: Organization.all.map { |x| [x.name, x.id] }
-    end
-    f.actions
-  end
+  # See permitted parameters documentation:
+  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+  #
+  # Uncomment all parameters which should be permitted for assignment
+  #
+  # permit_params :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :first_name, :last_name, :user_type, :age, :phone_number, :education_level, :area_of_interest, :confirmation_token, :confirmed_at, :confirmation_sent_at, :unconfirmed_email
+  #
+  # or
+  #
+  # permit_params do
+  #   permitted = [:email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :first_name, :last_name, :user_type, :age, :phone_number, :education_level, :area_of_interest, :confirmation_token, :confirmed_at, :confirmation_sent_at, :unconfirmed_email]
+  #   permitted << :other if params[:action] == 'create' && current_user.admin?
+  #   permitted
+  # end
   
 end
