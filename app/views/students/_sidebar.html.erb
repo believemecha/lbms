@@ -124,11 +124,11 @@
 <body>
 
     <nav  class="navba d-flex align-items-center justify-content-between plr-1rem">
-      <span></span>
+      <span> </span>
       <span class="emblem">
-        <a class="navba-brand" style="font-size: 35px;">
-            <span style="color: white; font-weight: bold; font-style: italic;">Razor </span> 
-            <span style="font-weight: bold; font-style: normal; color: #ff0066;">Sharp</span>
+        <a class="navba-brand" style="font-size: 35px; text-decoration:none;">
+            <span style="color: white; font-weight: bold; font-style: italic; ">Admission </span> 
+            <span style="font-weight: bold; font-style: italic; color: #ff0066;">Bank</span>
         </a>
       </span>  
       <span class="sign_out_btn">
@@ -143,24 +143,36 @@
         <div class="account_create" href="#" style="margin-bottom: 22px;margin-top: 30px; margin-left:10px; border-bottom: 2px solid white">
             <i class="material-icons" style="font-size: 63px;">account_circle</i>
         </div>
-        <div class= "mt-4" style="text-decoration:underline;">
-            <a href="#"><span class="material-symbols-outlined"> dashboard_customize </span><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</span></a>
-            <a href="#"><span><span class="material-symbols-outlined">home</span><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Home</span></a>
-            <a href="#"><span><i class="material-icons">info</i><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Profile</span></a>
+        <div class= "mt-4" >
+
+            <a href="<%= root_path %>"><span><span class="material-symbols-outlined">home</span><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Home</span></a>
+
+            <a href="<%= profiles_path %>"><span><i class="material-icons">info</i><span class="icon-text">&nbsp;&nbsp;&nbsp;&nbsp;Profile</span></a>
+
             <a href="#"><span class="material-symbols-outlined">local_activity</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Activity Center</a></span></a>
-            <a href="#"><span class="material-symbols-outlined"> menu_book </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;MCQs</a></span></a>
+
+            <a href="<%= question_banks_path %>"><span class="material-symbols-outlined"> menu_book </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Question Bank</a></span></a>
+
             <a href="#"><span class="material-symbols-outlined">trending_up</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;My Progress</a></span></a>
-            <a href="#"><span class="material-symbols-outlined">finance_chip</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Rewards And Coins</a></span></a>
-            <a href="#"><span class="material-symbols-outlined"> stadia_controller</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;SparkX Game</a></span></a>
-            <a href="#"><span class="material-symbols-outlined"> groups_3</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Collaborated Colleges</span></a>
-            <a href="#"><span class="material-symbols-outlined"> contact_support </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Contact Us</span></a>
-            <a href="#"><span class="material-symbols-outlined"> person_raised_hand </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Raise An Issue<span></a>
-            <a href="#"><span class="material-symbols-outlined"> help </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Help<span></a>
+
+            <a href="<%= rewards_path %>"><span class="material-symbols-outlined">finance_chip</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Rewards And Coins</a></span></a>
+
+            <a href="<%= sparkxs_path %>"><span class="material-symbols-outlined"> stadia_controller</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;SparkX Game</a></span></a>
+
+            <a href="<%= collaborated_colleges_path %>"><span class="material-symbols-outlined"> groups_3</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Collaborated Colleges</span></a>
+
+            <a href="<%= guidelines_path %>"><span class="material-symbols-outlined">developer_guide</span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Guidelines<span></a>
+
+
+            <a href="<%= contact_uss_path %>"><span class="material-symbols-outlined"> contact_support </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Contact Us</span></a>
+
+            <a href="<%= raise_an_issues_path %>"><span class="material-symbols-outlined"> person_raised_hand </span><span class="icon-text"></span>&nbsp;&nbsp;&nbsp;&nbsp;Raise An Issue<span></a>
+
         </div>
     </div>
 
     <div id="main">
-        <h2>Open/Collapse Sidebar on Hover</h2>
+        <h2></h2>
     </div>
 
     <script>

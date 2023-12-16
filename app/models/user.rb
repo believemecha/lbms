@@ -11,15 +11,7 @@ class User < ApplicationRecord
       school: 1,
       college: 2,
       admin: 3
-    }  
-    
-    enum education_level: {
-      ninth: 0,
-      tenth: 1,
-      eleventh:2,
-      twelfth: 3,
-      graduation:4
-    }
+    }    
 
     VALID_TYPES = %w[student school admin college].freeze
 
@@ -30,11 +22,14 @@ class User < ApplicationRecord
         user_type == user_role
       end
     end
-
+  
+  
     def self.ransackable_attributes(auth_object = nil)
-      ["age", "area_of_interest", "confirmation_sent_at", "confirmation_token", "confirmed_at", "created_at", "current_sign_in_at", "current_sign_in_ip", "education_level", "email", "encrypted_password", "first_name", "id", "last_name", "last_sign_in_at", "last_sign_in_ip", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "unconfirmed_email", "updated_at", "user_type"]
+      ["address", "admission_taken", "age", "confirmation_sent_at", "confirmation_token", "confirmed_at", "country", "created_at", "current_sign_in_at", "current_sign_in_ip", "dob", "email", "encrypted_password", "first_name", "id", "interested_program", "last_name", "last_sign_in_at", "last_sign_in_ip", "phone_number", "qualification", "remember_created_at", "reset_password_sent_at", "reset_password_token", "school_address", "school_name", "score", "sign_in_count", "stream", "unconfirmed_email", "updated_at", "user_type"]
     end
-
+    def self.ransackable_associations(auth_object = nil)
+      ["question_banks"]
+    end
     private
 
     def set_default_attrs

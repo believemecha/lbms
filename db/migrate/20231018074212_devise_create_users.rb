@@ -34,11 +34,19 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
 
       t.string   :first_name
       t.string   :last_name
-      t.integer   :user_type
-      t.integer   :age
+      t.integer  :user_type
+      t.integer  :age
       t.string   :phone_number
-      t.integer   :education_level
-      t.string   :area_of_interest
+      t.integer  :qualification
+      t.string   :stream
+      t.string   :address
+      t.string   :school_name
+      t.string   :country
+      t.date     :dob
+      t.string   :interested_program
+      t.integer  :score
+      t.boolean  :admission_taken, default: false
+      t.string   :school_address
 
       t.timestamps null: false
     end

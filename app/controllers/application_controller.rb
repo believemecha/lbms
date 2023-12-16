@@ -15,8 +15,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :phone_number, :last_name, :user_type, :age, :education_level, :area_of_interest])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :phone_number, :last_name, :user_type, :age, :education_level, :area_of_interest])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :phone_number, :last_name, :user_type, :age, :qualification])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :phone_number, :last_name, :user_type, :age, :qualification])
   end
 
   def after_sign_in_path_for(resource)

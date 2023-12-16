@@ -1,64 +1,84 @@
-<nav class="navba">
-    <a class="navba-brand text-center" style="font-size: 35px;">
-        <span style="color: white; font-weight: bold; font-style: italic;">Razor </span> 
-        <span style="font-weight: bold; font-style: normal; color: #ff0066;">Sharp</span>
-    </a>
-</nav>
+<div class="container-fluid">
+ <div class="row">
+  <nav class="navba">
+      <a class="navba-brand text-center" style="font-size: 35px;">
+          <span style="color: white; font-weight: bold; font-style: italic;">Razor </span> 
+          <span style="font-weight: bold; font-style: normal; color: #ff0066;">Sharp</span>
+      </a>
+  </nav>
+ </div>
 
-<div class="centered-container shadow p-4">
-    <div class="details" style="text-align: center;">
-        <h1 class="text-capitalize">Register Yourself Here</h1>
+  <div class=" row centered-container shadow p-4">
+      <div class="details" style="text-align: center;">
+          <h1 class="text-capitalize">Register Yourself Here</h1>
+      </div>
+    <div class="sign_up_forming">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+                    
+          <div class="field">
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "First Name", class: "input-field" %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "Last Name", class: "input-field" %>
+          </div>
+
+          <div class="field">
+            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "Phone Number", class: "input-field" %>
+          </div> 
+          
+          <div class="field">
+            <%= f.text_field :stream, autofocus: true, autocomplete: "stream", placeholder: "Stream", class: "input-field" %>
+          </div>    
+          
+          <div class="field">
+            <%= f.number_field :age, autofocus: true, autocomplete: "age", placeholder: "Age", class: "input-field" %>
+          </div>     
+
+          <div class="field">
+            <%= f.text_field :qualification, autofocus: true, autocomplete: "qualification", placeholder: "Qualification", class: "input-field" %>
+          </div>     
+
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "input-field" %>
+          </div>
+
+          <div class="field">
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "input-field" %>
+          </div>
+
+          <div class="field">
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "input-field" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Sign up" %>
+          </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
     </div>
-  <div class="sign_up_forming">
-
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= devise_error_messages! %>
-                  
-        <div class="field">
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "First Name", class: "input-field" %>
-        </div>
-
-        <div class="field">
-          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "Phone Number", class: "input-field" %>
-        </div> 
-        
-        <div class="field">
-          <%= f.text_field :area_of_interest, autofocus: true, autocomplete: "area_of_interest", placeholder: "Area Of Interest", class: "input-field" %>
-        </div>         
-
-        <div class="field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "input-field" %>
-        </div>
-
-        <div class="field">
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "input-field" %>
-        </div>
-
-        <div class="field">
-          <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "input-field" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "Sign up" %>
-        </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-
   </div>
 </div>
 
 <style>
 .centered-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-   
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 36%; /* Set a maximum width to limit the container size */
+  width: 100%; /* Make the container responsive to its parent's width */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 14px;
+  margin-bottom:55px;
+  }
 
 .sign_up_forming{
   display: flex;
@@ -84,6 +104,7 @@
     height: 100%;
     background-color: black;
     padding: 15px;
+    margin-bottom: 30px;
 }
 
 .actions input[type="submit"] {
