@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    h2 {
+      color: #666;
+      text-align: center;
+    }
+
+    h3 {
+      color: #444;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weekly Call Statistics - <%= @organization.name %></h1>
+
+  <h2>Date: <%= @total_stats[:date] %></h2>
+
+  <h3>User-Specific Call Statistics:</h3>
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Incoming</th>
+      <th>Outgoing</th>
+      <th>Missed</th>
+      <th>Declined</th>
+    </tr>
+    <% @user_stats.each do |user, stats| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= stats["incoming"].to_i %></td>
+        <td><%= stats["outgoing"].to_i %></td>
+        <td><%= stats["missed"].to_i %></td>
+        <td><%= stats["declined"].to_i %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <h3>Cumulative Call Statistics:</h3>
+  <table>
+    <tr>
+      <th>Incoming</th>
+      <th>Outgoing</th>
+      <th>Missed</th>
+      <th>Declined</th>
+    </tr>
+    <tr>
+      <td><%= @total_stats[:incoming] %></td>
+      <td><%= @total_stats[:outgoing] %></td>
+      <td><%= @total_stats[:missed] %></td>
+      <td><%= @total_stats[:declined] %></td>
+    </tr>
+  </table>
+</body>
+</html>

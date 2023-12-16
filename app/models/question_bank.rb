@@ -1,3 +1,0 @@
-class QuestionBank < ApplicationRecord
-end
-    

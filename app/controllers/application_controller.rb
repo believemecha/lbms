@@ -1,39 +1,23 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+    protect_from_forgery
+  
+    #
+    # redirect registered users to a profile page
+    # of to the admin dashboard if the user is an administrator
+    #
+    def after_sign_in_path_for(resource)
+        current_user.admin? ? admin_dashboard_path : '/home'
+    end
+  
+    def authenticate_admin_user!
+      redirect_to root_path if (!current_user.present? || !current_user.admin?)
+    end
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-
-
-  def authenticate_admin_user!
-    if !current_user.present? || !current_user.admin?
+    def destroy_admin_user
+        super
+    end
+  
+    rescue_from SecurityError do |exception|
       redirect_to root_path
     end
   end
-  
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :phone_number, :last_name, :user_type, :age, :qualification])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :phone_number, :last_name, :user_type, :age, :qualification])
-  end
-
-  def after_sign_in_path_for(resource)
-    # Redirect to the desired page after login
-    students_path(resource)
-  end
-  def after_sign_up_path_for(resource)
-    # Redirect to the desired page after signup
-    # For example, redirect to a welcome page or dashboard
-    students_path
-  end
-  def after_sign_out_path_for(resource_or_scope)
-    # Redirect to the desired page after logout
-    # For example, redirect to the home page
-    root_path
-  end
-
-
-
-end

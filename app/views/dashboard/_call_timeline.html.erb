@@ -1,0 +1,74 @@
+<%
+messages = []
+data.each do |log|
+  call_start_time = log.call_start_time.in_time_zone("Mumbai")
+  now = Time.now
+
+  if call_start_time.to_date == now.to_date
+    # Today
+    date_string = 'today'
+  elsif call_start_time.to_date == now.yesterday.to_date
+    # Yesterday
+    date_string = 'yesterday'
+  elsif (call_start_time >= (now - 1.week)) && (call_start_time.wday != now.wday)
+    # Within the week (different day than today)
+    date_string = call_start_time.strftime('%A') # Format as "Monday"
+  else
+    # Other days
+    date_string = call_start_time.strftime('%d %b') # Format as "23 May"
+  end
+
+  time_string = call_start_time.strftime('%H:%M') # Format as "12:34"
+
+  duration_minutes = log.duration / 60
+  duration_seconds = log.duration % 60
+
+  obj = {
+    date: "#{date_string} at #{time_string}",
+    duration: "#{duration_minutes}m #{duration_seconds}s",
+    was_from_user: log.call_type == 'outgoing',
+    call_type: log.call_type
+  }
+  messages << obj
+end
+%>
+
+<style>
+ .call-card {
+   background-color: #f4f4f4;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+   padding: 10px;
+   margin: 10px 0;
+ }
+
+ .incoming {
+   background-color: #d3e0f1;
+   border-color: #3498db;
+ }
+
+ .outgoing {
+   background-color: #d9ead3;
+   border-color: #27ae60;
+ }
+
+ .missed {
+   background-color: #f6c5c5;
+   border-color: #e74c3c;
+ }
+</style>
+
+<div class="container mt-4" style="border: 1px solid #ccc; max-height: 400px; overflow-y: scroll; ">
+ <p>Logs</p>
+  <% messages.each do |message| %>
+    <div class="call-card <%= message[:call_type] %>">
+      <div class="row">
+        <div class="col-md-12">
+          <h5><%= message[:call_type] %></h5>
+          <p style="color: black; fomt-weight: 500;"><%= message[:duration] %>s</p>
+          <p style="color: blue"><%= message[:date] %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

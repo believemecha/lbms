@@ -1,91 +1,16 @@
-<nav class="navba">
-    <a class="navba-brand text-center" style="font-size: 35px;">
-        <span style="color: white; font-weight: bold; font-style: italic;">Razor </span> 
-        <span style="font-weight: bold; font-style: normal; color: #ff0066;">Sharp</span>
-    </a>
-</nav>
+<h2>Forgot your password?</h2>
 
-<div class="centered-container">
-    <div class="details" style="text-align: center;">
-        <h1>Forgot your password</h1>
-    </div>
-  <div class="forget_password_forming">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= devise_error_messages! %>
-
-      <div class="field">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "input-field" %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Reset Password " %>
-      </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
-</div>
 
-<style>
-.centered-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid #ff0066;
-    border-radius: 15px;
-    height: 550px;
-    width: 450px;
-}
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
 
-.forget_password_forming{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 60px;
-}
-
-.input-field {
-    width: 100%;
-    padding-top: 40px;
-    font-size: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.navba {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: black;
-    padding: 15px;
-}
-
-.actions input[type="submit"] {
-    height: 40px; 
-    width: 300px;
-    background-color: black;
-    color: white;
-    margin-bottom:35px;
-    margin-top:30px;
-    font-size: 15px;
-    font-weight:bold;
-    border-radius:10px;
-}
-.forget_password_forming .field .input-field {
-  width: 100%;
-  padding-top: 15px;
-  padding-bottom: 12px; /* Adjust padding to center text vertically */
-  margin-bottom: 12px;
-  font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-</style>
+<%= render "devise/shared/links" %>
