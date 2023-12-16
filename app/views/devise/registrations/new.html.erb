@@ -1,131 +1,39 @@
 <div class="container-fluid">
- <div class="row">
-  <nav class="navba">
-      <a class="navba-brand text-center" style="font-size: 35px;">
-          <span style="color: white; font-weight: bold; font-style: italic;">Razor </span> 
-          <span style="font-weight: bold; font-style: normal; color: #ff0066;">Sharp</span>
-      </a>
-  </nav>
- </div>
+  <div class="row justify-content-center align-items-center" style="height: 100vh;">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-dark text-center">Sign up</h2>
 
-  <div class=" row centered-container shadow p-4">
-      <div class="details" style="text-align: center;">
-          <h1 class="text-capitalize">Register Yourself Here</h1>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form' }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="form-group">
+              <%= f.label :email, class: 'form-label' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password, class: 'form-label' %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation, class: 'form-label' %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+            </div>
+
+            <div class="text-center">
+              <%= f.submit "Sign up", class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+
+          <%= render "devise/shared/links" %>
+        </div>
       </div>
-    <div class="sign_up_forming">
-
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= devise_error_messages! %>
-                    
-          <div class="field">
-            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "First Name", class: "input-field" %>
-          </div>
-
-          <div class="field">
-            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "Last Name", class: "input-field" %>
-          </div>
-
-          <div class="field">
-            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "Phone Number", class: "input-field" %>
-          </div> 
-          
-          <div class="field">
-            <%= f.text_field :stream, autofocus: true, autocomplete: "stream", placeholder: "Stream", class: "input-field" %>
-          </div>    
-          
-          <div class="field">
-            <%= f.number_field :age, autofocus: true, autocomplete: "age", placeholder: "Age", class: "input-field" %>
-          </div>     
-
-          <div class="field">
-            <%= f.text_field :qualification, autofocus: true, autocomplete: "qualification", placeholder: "Qualification", class: "input-field" %>
-          </div>     
-
-          <div class="field">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "input-field" %>
-          </div>
-
-          <div class="field">
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
-            <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "input-field" %>
-          </div>
-
-          <div class="field">
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation", class: "input-field" %>
-          </div>
-
-          <div class="actions">
-            <%= f.submit "Sign up" %>
-          </div>
-      <% end %>
-
-      <%= render "devise/shared/links" %>
-
     </div>
   </div>
 </div>
-
-<style>
-.centered-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 36%; /* Set a maximum width to limit the container size */
-  width: 100%; /* Make the container responsive to its parent's width */
-  margin: 0 auto; /* Center the container horizontally */
-  padding: 14px;
-  margin-bottom:55px;
-  }
-
-.sign_up_forming{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  width:100%;
-}
-
-.input-field {
-    width: 100%;
-    font-size: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.navba {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: black;
-    padding: 15px;
-    margin-bottom: 30px;
-}
-
-.actions input[type="submit"] {
-    height: 40px; 
-    width: 100%;
-    background-color: #ff0066;
-    margin-bottom:35px;
-    margin-top:15px;
-    font-size: 22px;
-    font-weight:bold;
-    border-radius:10px;
-}
-.sign_up_forming .field .input-field {
-  width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px; /* Adjust padding to center text vertically */
-  margin-bottom: 12px;
-  font-size: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-</style>

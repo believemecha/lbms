@@ -1,0 +1,62 @@
+<!-- app/views/dashboard/log_detail.html.erb -->
+
+<div class="container">
+  <h2 class="mt-5"><%= (@log.name || @phone_number) %></h2>
+
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Calls</h5>
+          <p class="card-text"><%= @total_calls %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Total Call Duration</h5>
+          <p class="card-text"><%= @total_duration %> seconds</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Average Call Duration</h5>
+          <p class="card-text"><%= @average_duration %> seconds</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Longest Call</h5>
+          <p class="card-text"><%= @longest_call.try(:duration) %> seconds</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: "call_timeline", locals: { data: @call_logs } %>
+
+ <div class="row mt-4">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Duration of Calls Over Time</h5>
+        <p class="card-text">
+          <%= line_chart @call_data,  xtitle: "Time", ytitle: "Duration (seconds)" %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
