@@ -1,0 +1,2 @@
+module RaiseAnIssuesHelper
+end

@@ -1,0 +1,55 @@
+<style>
+  .white-text {
+    color: white;
+  }
+
+  .navbar a {
+    color: white;
+    font-size: 18px; 
+  }
+
+  .navbar-nav .nav-link {
+    color: white;
+    font-size: 16px; 
+  }
+
+  .navbar-nav .nav-link.disabled {
+    color: white;
+  }
+</style>
+
+<nav class="navbar" style="background-color: #071a35; padding: 10px 0;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="font-size: 25px; color: gold; margin-left: 40px;">
+      <span style="color: white; font-weight: bold; font-style: italic;">Razor </span> <span style="font-weight: bold; font-style: normal; color: #ff0066;">Sharp</span>
+    </a>
+    <ul class="nav justify-content-end">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/sign_in" id="login-link">
+          <i class="fas fa-user"></i>
+            <% if current_user.present? %>
+              <%=current_user.try(:first_name)%>
+            <%else%>
+              Login
+            <%end%>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+

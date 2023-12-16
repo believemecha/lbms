@@ -1,0 +1,160 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+<div>
+  <%= render 'students/sidebar'%>
+  <div class="heading-question d-flex justify-content-center align-item-center">
+    <h1 > Guidelines</h1> 
+  </div>
+</div>
+<section class="section ">
+    <div class="container">
+        <div class="justify-content-center row">
+            <div class="col-lg-12">
+                <div class="candidate-list-widgets mb-4 mt-5">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="align-items-center row">
+                    <div class="col-lg-8">
+                        <div class="mb-3 mb-lg-0"><h6 class="fs-16 mb-0">TOTAL 8 STEPS</h6></div>
+                    </div>
+                </div>
+                <div class="candidate-list">
+                    <div class="candidate-list-box card mt-4">
+                        <div class="p-4 card-body">
+                            <div class="align-items-center row">
+                                    <div class="candidate-list-content mt-3 mt-lg-0">
+                                        <h5 class="fs-19 mb-0">
+                                            <a class="primary-link" href="#">STEP-1</a>
+                                        </h5>
+                                        <p class="text-muted mb-2">Go to Question Bank section from sidebar and there you will get questions of all subjects one by one , and solve it on daily basis . You will get the marks that will be collected in your account as a coins . </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidate-list-box bookmark-post card mt-4">
+                        <div class="p-4 card-body">
+                            <div class="align-items-center row">
+                                    <div class="candidate-list-content mt-3 mt-lg-0">
+                                        <h5 class="fs-19 mb-0">
+                                            <a class="primary-link" href="#">STEP-2</a>
+                                        </h5>
+                                        <p class="text-muted mb-2">In PROGRESS section you will see the your record & in rewards and coins you will get to know the number of coins yoou have earned .</p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidate-list-box card mt-4">
+                        <div class="p-4 card-body">
+                            <div class="align-items-center row">
+                                    <div class="candidate-list-content mt-3 mt-lg-0">
+                                        <h5 class="fs-19 mb-0">
+                                            <a class="primary-link" href="#">STEP-3 </a>
+                                        </h5>
+                                        <p class="text-muted mb-2">Then on collaborated colleges section you will get to know the list of colleges where we can avail you scholarship . </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidate-list-box bookmark-post card mt-4">
+                        <div class="p-4 card-body">
+                            <div class="align-items-center row">
+                                    <div class="candidate-list-content mt-3 mt-lg-0">
+                                        <h5 class="fs-19 mb-0">
+                                            <a class="primary-link" href="#">STEP-4</a>
+                                        </h5>
+                                        <p class="text-muted mb-2">In CONTACT US section you can send message to our counsellors , and he and she will get back to you . </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candidate-list-box card mt-4">
+                        <div class="p-4 card-body">
+                            <div class="align-items-center row">
+                                <div class="candidate-list-content mt-3 mt-lg-0">
+                                    <h5 class="fs-19 mb-0">
+                                        <a class="primary-link" href="#">STEP-5</a>
+                                    </h5>
+                                    <p class="text-muted mb-2">In RAISE AN ISSUE section you can complain if uou have any . Our team will get back to you .</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+body{
+    background: -webkit-linear-gradient(left, #fff5d7, #1d304e);
+}
+.heading-question h1{
+    font-weight:850;
+    color:white;
+    font-size:4em;   
+     border-radius: 0.5rem;
+}
+.card {
+    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+
+.avatar-md {
+    height: 5rem;
+    width: 5rem;
+}
+
+.fs-19 {
+    font-size: 19px;
+}
+
+.primary-link {
+    color: #314047;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+a {
+    color: #02af74;
+    text-decoration: none;
+}
+
+.bookmark-post .favorite-icon a, .job-box.bookmark-post .favorite-icon a {
+    background-color: #da3746;
+    color: #fff;
+    border-color: danger;
+}
+.favorite-icon a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #eff0f2;
+    border-radius: 6px;
+    color: rgba(173,181,189,.55);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+
+.candidate-list-box .favorite-icon {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+}
+.fs-14 {
+    font-size: 14px;
+}
+.bg-soft-secondary {
+    background-color: rgba(116,120,141,.15)!important;
+    color: #74788d!important;
+}
+
+.mt-1 {
+    margin-top: 0.25rem!important;
+}
+</style>

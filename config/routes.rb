@@ -1,44 +1,37 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-  root to: 'dashboard#index'
-  get "/home", to: "home#home"
-  get "/india", to: "home#india"
-
-  post 'call_logs/update_details', to: 'api/call_logs#update_details'
-  post 'call_logs/sync_logs', to: 'api/call_logs#sync_logs'
-
-  get '/dashboard/logs', to: 'dashboard#logs', as: 'dashboard_logs'
-  get '/dashboard', to: 'dashboard#index', as: 'dashboard_index'
-  get '/dashboard/log_detail/:id', to: 'dashboard#log_detail'
-
-
-  ##Partners
-  get '/partner/dashboard', to: 'partners/dashboard#index'
-
-
-  # get
-
-
-
-
+  get 'collaborated_colleges/index'
+  get 'contact_uss/index'
+  get 'profiles/index'
 
   ActiveAdmin.routes(self)
+  devise_for :users, class_name: 'User'
+  
+  # Root route to the ArticlesController#index action
+  root 'articles#index'
+  # Route for the ArticlesController#index action accessible at /articles
+  get 'articles', to: 'articles#index'
 
+  resources :students, only: [:index]
 
-  namespace :api, defaults: { format: :json } do
-    devise_for :users, controllers: {
-      sessions: 'api/sessions'
-    }
-
+  # colleges
+  namespace :colleges do
+    get 'dashboard', to: 'dashboard#index'
   end
+  get '/contact_us', to: 'contact_uss#index', as: 'contact_uss'
+  resources :collaborated_colleges, only: [:index]
 
-  post '/api/users/login', to: 'api/sessions#login'
-  post '/api/users/signup', to: 'api/sessions#signup'
+  resources :raise_an_issues, only: [:index]
+  get 'raise_an_issues', to: 'raise_an_issues#index'
+  get 'raise_an_issues/:id', to: 'raise_an_issues#show'
+  get 'guidelines/index', to: 'guidelines#index', as: 'guidelines'
+  get 'rewards/index', to: 'rewards#index', as: 'rewards'
+  get 'sparkxs/index', to: 'sparkxs#index', as: 'sparkxs'
 
+  post 'raise_an_issues/save_report', to: 'raise_an_issues#save_report', as: 'raise_an_issues_save_report'
 
   
+  resources :profiles, only: [:index]
+
+  resources :question_banks, only: [:index]
+
 end

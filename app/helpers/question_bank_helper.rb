@@ -1,0 +1,2 @@
+module QuestionBankHelper
+end
