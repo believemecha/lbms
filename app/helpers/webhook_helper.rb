@@ -32,7 +32,7 @@ module WebhookHelper
     private
   
     def send_error_email(message)
-      admin_email = ['lbsingh732196@gmail.com','myofferplant@gmail.com']
+      admin_email = ['lbsingh732196@gmail.com']
       subject = 'Error :WebhookHelper::send_log_to_consumer_portal '
       ErrorMailer.error_notification(admin_email, subject, message).deliver_now
     end
