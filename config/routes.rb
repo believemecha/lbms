@@ -16,8 +16,14 @@ Rails.application.routes.draw do
   get '/dashboard/log_detail/:id', to: 'dashboard#log_detail'
 
 
+
   ##Partners
   get '/partner/dashboard', to: 'partners/dashboard#index'
+
+
+  get '/payments/new_payment_form', to: 'payments#new_payment_form'
+  post '/payments/new_payment', to: 'payments#new_payment'
+  get '/payments/check_status/:code', to: 'payments#check_status'
 
 
   # get

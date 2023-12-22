@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_08_104951) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_22_072845) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_104951) do
     t.datetime "updated_at", null: false
     t.integer "owner_id"
     t.string "webhook_url"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "merchant_transaction_id", null: false
+    t.string "merchant_id", null: false
+    t.integer "user_id", null: false
+    t.string "name"
+    t.decimal "amount", null: false
+    t.integer "status"
+    t.string "code"
+    t.integer "organization_id"
+    t.json "gateway_params", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "product_categories", force: :cascade do |t|
