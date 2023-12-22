@@ -17,6 +17,8 @@
           <h5 class="card-title">Transaction ID: <%= @payment.merchant_transaction_id %></h5>
           <p class="card-text">Status: <%= @data['data']['state'] %></p>
           <p class="card-text">Amount: <%= @data['data']['amount'].to_i/100 %></p>
+          <p class="card-text">Name: <%= @payment.name%></p>
+
           <!-- Add more details as needed -->
 
           <!-- Display additional details from @data -->
@@ -40,7 +42,10 @@
       </div>
       <button class="btn btn-primary mt-3" onclick="downloadAsPDF()">Download as PDF</button>
     <% else %>
-      <p>No payment details available.</p>
+      <p>No payment details available</p>
+      <% if @payment.present?%>
+      <p> Relaoding the page</p>
+      <% end %>
     <% end %>
 
   </div>
@@ -63,6 +68,12 @@
     };
 
     html2pdf().from(element).set(options).save();
+  }
+
+  if("<%=@payment.present? && @payment.pending?%>"=="true"){
+    setTimeout(()=>{
+        window.location.reload();
+    },2000);
   }
 </script>
 </body>

@@ -14,8 +14,8 @@ class PaymentsController < ApplicationController
         base_url = Rails.env == "development" ? "http://localhost:3001" : "https://jalalpur.in"
         begin
           p_name, p_user_id, p_amount, p_phone = params[:name], params[:user_id], params[:price], params[:phone]
-          cred_merchant_id = "PGTESTPAYUAT"
-          cred_salt_key = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399"
+          cred_merchant_id = "OFFERPLANTPGONLINE"
+          cred_salt_key = "774325e8-08e0-476c-8906-76ab588d0c23"
           cred_key_index = 1
           merchant_transaction_id = 'OFFERPLANT' + Time.now.to_i.to_s
       
@@ -39,7 +39,7 @@ class PaymentsController < ApplicationController
           sha256 = Digest::SHA256.hexdigest(string)
           checksum = "#{sha256}####{cred_key_index}"
       
-          prod_url = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay"
+          prod_url = "https://api.phonepe.com/apis/hermes/pg/v1/pay"
           
           uri = URI.parse(prod_url)
           http = Net::HTTP.new(uri.host, uri.port)
@@ -83,16 +83,16 @@ class PaymentsController < ApplicationController
         code_number = params[:code]
         @data = nil
         @payment = Payment.find_by(merchant_transaction_id: code_number)
-        if @payment.present?
-            cred_merchant_id = "PGTESTPAYUAT"
-            cred_salt_key = "099eb0cd-02cf-4e2a-8aca-3e6c6aff0399"
+        if @payment.present? && @payment.pending?
+            cred_merchant_id = "OFFERPLANTPGONLINE"
+            cred_salt_key = "774325e8-08e0-476c-8906-76ab588d0c23"
             cred_key_index = 1
             merchant_transaction_id = @payment.merchant_transaction_id
             string = "/pg/v1/status/#{cred_merchant_id}/#{merchant_transaction_id}#{cred_salt_key}"
             sha256 = Digest::SHA256.hexdigest(string)
             checksum = "#{sha256}####{cred_key_index}"
         
-            prod_url = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/status/#{cred_merchant_id}/#{merchant_transaction_id}"
+            prod_url = "https://api.phonepe.com/apis/hermes/pg/v1/status/#{cred_merchant_id}/#{merchant_transaction_id}"
             
             uri = URI.parse(prod_url)
             http = Net::HTTP.new(uri.host, uri.port)
@@ -111,6 +111,10 @@ class PaymentsController < ApplicationController
                 if @data['data']['state'] == "COMPLETED" && @payment.pending?
                     @payment.update(status: :success, gateway_params: @data['data'])
                 end
+            end
+        else
+            if @payment.present? && @payment.success?
+                @data = JSON.parse({'data': @payment.gateway_params}.to_json)
             end
         end
     end
