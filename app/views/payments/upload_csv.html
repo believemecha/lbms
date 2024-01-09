@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XLSX Uploader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <style>
+        .container-fluid {
+            margin: 20px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        #dataTable {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #dataTable th, #dataTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <label for="fileInput" class="btn btn-primary">Upload XLSX</label>
+        <input type="file" id="fileInput" accept=".xlsx,.xls" onchange="handleFile()">
+    </div>
+</div>
+
+<table id="dataTable"></table>
+
+<script>
+    function handleFile() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                handleWorkbook(workbook);
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    }
+
+    function handleWorkbook(workbook) {
+        const dataTable = document.getElementById('dataTable');
+        dataTable.innerHTML = '';
+
+        workbook.SheetNames.forEach(sheetName => {
+            const sheet = workbook.Sheets[sheetName];
+            const data = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            console.log(data);
+
+            // Create header row
+            const headerRow = dataTable.insertRow();
+            data[0].forEach(header => {
+                const cell = headerRow.insertCell();
+                cell.textContent = header;
+            });
+
+            // Create data rows
+            for (let i = 1; i < data.length; i++) {
+                const dataRow = dataTable.insertRow();
+                data[i].forEach(value => {
+                    const cell = dataRow.insertCell();
+                    cell.textContent = value;
+                });
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

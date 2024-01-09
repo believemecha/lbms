@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_22_072845) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_28_163256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_22_072845) do
     t.datetime "updated_at", null: false
     t.integer "call_type"
     t.index ["user_id"], name: "index_call_logs_on_user_id"
+  end
+
+  create_table "csp_daily_details", force: :cascade do |t|
+    t.string "merchant_id", null: false
+    t.integer "user_id", null: false
+    t.string "name"
+    t.decimal "amount", null: false
+    t.integer "status"
+    t.string "code"
+    t.integer "organization_id"
+    t.json "meta", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "libraries", force: :cascade do |t|

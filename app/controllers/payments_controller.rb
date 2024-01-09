@@ -118,5 +118,9 @@ class PaymentsController < ApplicationController
             end
         end
     end
+
+    def upload_csv
+      
+    end
 end
   

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post '/payments/new_payment', to: 'payments#new_payment'
   get '/payments/check_status/:code', to: 'payments#check_status'
 
+  get '/payments/upload_csv', to: 'payments#upload_csv'
 
   # get
 

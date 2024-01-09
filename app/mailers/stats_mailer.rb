@@ -30,7 +30,7 @@ class StatsMailer < ApplicationMailer
 
     mail(
       from: "lbsingh732196@gmail.com",
-      to: ["lbsingh732196@gmail.com",@organization.email_address],
+      to: ["lbsingh732196@gmail.com"],
       subject: subject
     )
   end
