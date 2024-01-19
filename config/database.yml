@@ -80,4 +80,4 @@ test:
 #
 production:
   <<: *default
-  url: 'postgres://lbms:1njSOtsNKAJTpJLzKUsAKiMnWBI6IOEH@dpg-cknscfprfc9c739rpkig-a.oregon-postgres.render.com/lbms_production'
+  url: 'postgres://lbms:wK88tj6RCzqueX0SDi3miunPKoM1WaWb@dpg-cml4oof109ks73a5uo5g-a/lbms_production_h5f9'
