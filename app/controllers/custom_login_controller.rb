@@ -25,7 +25,7 @@ class CustomLoginController < ApplicationController
         if @user.present?
           current_otp = UserOtp.find_by(user_id: @user.id,status: :generated,purpose: :login_otp)
           if current_otp.present? && current_otp.otp == otp_entered
-            sign_in(User.first)
+            sign_in(@user)
             render json: {status: true}
           else
             render json: {status: false, message: "Wrong Otp"}
