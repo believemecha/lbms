@@ -27,12 +27,6 @@ Rails.application.routes.draw do
 
   get '/payments/upload_csv', to: 'payments#upload_csv'
 
-  # get
-
-
-
-
-
   ActiveAdmin.routes(self)
 
 
@@ -40,12 +34,22 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'api/sessions'
     }
-
   end
 
   post '/api/users/login', to: 'api/sessions#login'
   post '/api/users/signup', to: 'api/sessions#signup'
 
+  namespace :creators do
+    resources :blogs, only: [:index] do
+    end
+  end
 
-  
+  resources :custom_login, only: [] do
+    collection do
+      post :generate_otp
+      post :verify_otp
+      get :with_otp
+    end
+  end
+
 end

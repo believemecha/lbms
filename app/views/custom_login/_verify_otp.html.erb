@@ -1,0 +1,37 @@
+<div class="row w-100">
+    <div class="col-md-3"></div>
+    <div class="card col-md-6">
+        <div class="card-body">
+            <h2 class="card-title mb-4 text-center">Login</h2>
+                <div class="form-group">
+                    <p class="text-success">Otp sent to <%=email%></p>
+                    <p id="error_text" class="text-danger"></p>
+                    <input type="text"  name="email" value ="<%=email%>"class="form-control" id="email" hidden>
+                    <input type="number" class="form-control" id="email_otp" name="email_otp" placeholder="Enter Otp Sent to Your Email">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mt-3" id="verfify_otp" onclick="verfiyOtp()">Verfify</button>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<script>
+    function verfiyOtp() {
+        var otp = document.getElementById("email_otp").value;
+            $.ajax({
+            type: 'POST',
+            url: '/custom_login/verify_otp',
+            data: {email: '<%=email%>', otp: otp},
+            headers:{"X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content},
+            success: function (data) {
+                console.log(data,"data");
+                if(data.status){
+
+                }
+                else{
+                    document.getElementById("error_text").innerHTML = data?.message;
+                }
+            }
+    });
+    }
+</script>

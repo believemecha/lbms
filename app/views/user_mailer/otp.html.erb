@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Your Hourly Ananlysis of the Logs..</title>
+</head>
+<body>
+    <img src="<%=(Rails.application.config.base_url + '/logo.png')%>" style: "width:100%;max-height:200px">
+    <h4>
+        Hello <%=@name%>, 
+        <br>
+        Someone has requested to login using otp. The otp is
+        <br>
+        <h3><%=@otp%></h3>
+    </h4>
+</body>
+</html>
