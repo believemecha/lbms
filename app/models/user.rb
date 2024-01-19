@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
 
   has_many :call_logs
-  belongs_to :organization
+  belongs_to :organization, optional: true
   has_many :child_organizations, class_name: "Organization", foreign_key: "owner_id"
 
   VALID_TYPES = %w[Admin User Partner].freeze

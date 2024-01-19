@@ -77,6 +77,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    appsignal (3.5.4)
+      rack
     arbre (1.7.0)
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
@@ -317,6 +319,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  appsignal
   bootsnap
   byebug
   capybara
