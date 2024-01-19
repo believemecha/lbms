@@ -47,8 +47,11 @@
         $.ajax({
         type: 'POST',
         url: '/custom_login/generate_otp',
-        data: {email: email},
-        headers:{"X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content},
+        data: JSON.stringify({email: email}),
+        headers:{
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+            "Content-Type": "application/json"
+            },
         success: function (data) {
             if(data.status){
                 document.getElementById("formConatiner").style.display ="none";
@@ -68,8 +71,11 @@
             $.ajax({
             type: 'POST',
             url: '/custom_login/verify_otp',
-            data: {email: document.getElementById("email").value, otp: otp},
-            headers:{"X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content},
+            data: JSON.stringify({email: document.getElementById("email").value, otp: otp}),
+            headers:{
+                "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+                "Content-Type": "application/json"
+            },
             success: function (data) {
                 console.log(data,"data");
                 if(data.status){
