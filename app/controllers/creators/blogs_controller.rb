@@ -2,10 +2,14 @@ class Creators::BlogsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        
+        @blogs = Blog.all
     end
 
     def show
+        @blog = Blog.find_by(slug: params[:id])
+    end
+    
+    def edit
         @blog = Blog.find_by(slug: params[:id])
     end
 
@@ -17,8 +21,7 @@ class Creators::BlogsController < ApplicationController
         title = params[:title]
         content = params[:content]
         id = params[:id]
-      
-        @blog = Blog.find_by(id) || Blog.new(user_id: current_user.id)
+        @blog = Blog.find_by(id: id) || Blog.new(user_id: current_user.id)
       
         if title.present? && content.present?
           @blog.title = title

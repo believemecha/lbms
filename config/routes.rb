@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   post '/api/users/signup', to: 'api/sessions#signup'
 
   namespace :creators do
-    resources :blogs, only: [:index,:show] do
+    resources :blogs, only: [:index,:show,:edit] do
       collection do
         get :new_blog
         post :make_creation
