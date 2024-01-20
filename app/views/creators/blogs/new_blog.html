@@ -1,11 +1,21 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <!-- Create the editor container -->
+<h3>Create a Blog</h3>
+<br>
+    <input type="text" placeholder="Blog Title.." class="w-100" id="title">
+<br>
+<br>
+
 <div id="editor">
   <p>Hello World!</p>
   <p>Some initial <strong>bold</strong> text</p>
   <p><br></p>
 </div>
+
+<br>
+
+<button class="btn btn-primary btn-sm" id="create_blog" onclick="saveBlog()"> Create Blog</button>
 
 <!-- Include the Quill library -->
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -14,6 +24,7 @@
 <script>
 var quill = new Quill('#editor', {
     theme: 'snow', // or 'bubble' for a different theme
+    placeholder: "Start Writing..✍🏻",
     modules: {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -35,8 +46,36 @@ var quill = new Quill('#editor', {
         ['clean'],                                         // remove formatting button
         ['link', 'image', 'video']                         // link and image, video
       ]
-    }
+    },
   });
+  quill.root.innerHTML = '';
+
+
+  function saveBlog() {
+        var email = document.getElementById("title").value;
+        const btngene = document.getElementById("create_blog");
+        btngene.innerHTML = "Saving..";
+        btngene.disabled = true;
+        $.ajax({
+        type: 'POST',
+        url: '/creators/blogs/make_creation',
+        data: JSON.stringify({title: email, content: quill.root.innerHTML}),
+        headers:{
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+            "Content-Type": "application/json"
+            },
+        success: function (data) {
+            if(data.status == "success"){
+                window.location.href = data.redirect_path
+            }
+            else{
+                alert(data?.message);
+            }
+        }
+        });
+        btngene.innerHTML = "Create Blog";
+        btngene.disabled = false;
+    }
 
 
 </script>
