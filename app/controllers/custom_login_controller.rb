@@ -3,7 +3,7 @@ class CustomLoginController < ApplicationController
     before_action :set_user, only: [:generate_otp, :verify_otp]
 
     def with_otp
-
+        redirect_to root_path if current_user.present?
     end
   
     def generate_otp

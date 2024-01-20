@@ -41,6 +41,9 @@ Rails.application.routes.draw do
 
   namespace :creators do
     resources :blogs, only: [:index] do
+      collection do
+        get :new_blog
+      end
     end
   end
 

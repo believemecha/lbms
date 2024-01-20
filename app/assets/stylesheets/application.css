@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+@import 'quill/dist/quill.core';
+@import 'quill/dist/quill.snow';

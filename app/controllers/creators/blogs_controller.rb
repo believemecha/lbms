@@ -4,4 +4,8 @@ class Creators::BlogsController < ApplicationController
     def index
         
     end
+
+    def new_blog
+        
+    end
 end
