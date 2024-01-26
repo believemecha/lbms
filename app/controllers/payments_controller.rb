@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
     end
   
     def new_payment
-        base_url = Rails.env == "development" ? "http://localhost:3001" : "https://jalalpur.in"
+        base_url = Rails.env == "development" ? "http://localhost:3001" : "https://pay.offerplant.com"
         begin
           p_name, p_user_id, p_amount, p_phone = params[:name], params[:user_id], params[:price], params[:phone]
           cred_merchant_id = "OFFERPLANTPGONLINE"
