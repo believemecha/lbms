@@ -31,7 +31,7 @@ class Api::SessionsController < ApplicationController
     if user.present?
       render json: { message: 'User with this email already exists', status: false, user:nil, type:"exists" }
     else
-      new_user = User.new(email: user_params[:username],password: user_params[:password],organization_id: Organization.first.id)
+      new_user = User.new(email: user_params[:username],password: user_params[:password])
 
       if new_user.save
         render json: { message: 'Signed Up successfully. Pls check your email for confirmation', user: new_user, status: true, type:"created" }
