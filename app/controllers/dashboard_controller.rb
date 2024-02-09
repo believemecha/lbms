@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-    before_action :authenticate_user!, except: [:index]
+    before_action :authenticate_user!, except: [:index,:update_status]
 
     def logs
         redirect_to '/home' if current_user.admin?
@@ -68,5 +68,10 @@ class DashboardController < ApplicationController
         @longest_call = @call_logs.order(duration: :desc).first
         @call_data = @call_logs.pluck(:call_start_time, :duration)
 
+    end
+
+    def update_status
+      @user = User.last
+      @user.update(first_name: Time.zone.now.to_s)
     end
 end

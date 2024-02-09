@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboard#index', as: 'dashboard_index'
   get '/dashboard/log_detail/:id', to: 'dashboard#log_detail'
 
+  get '/status', to: 'dashboard#update_status'
+
 
 
   ##Partners
