@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_11_082655) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_11_095223) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_11_082655) do
     t.boolean "offers_membership"
     t.boolean "has_cafeteria"
     t.boolean "has_meeting_rooms"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "magic_links", force: :cascade do |t|
+    t.integer "link_type"
+    t.string "redirect_to"
+    t.string "auth_user_id"
+    t.string "code"
+    t.datetime "expires_on"
+    t.string "description"
+    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
