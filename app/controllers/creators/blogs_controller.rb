@@ -20,12 +20,14 @@ class Creators::BlogsController < ApplicationController
     def make_creation
         title = params[:title]
         content = params[:content]
+        content_json = params[:content_json]
         id = params[:id]
         @blog = Blog.find_by(id: id) || Blog.new(user_id: current_user.id)
       
-        if title.present? && content.present?
+        if title.present? && content.present? && content_json.present?
           @blog.title = title
           @blog.content = content
+          @blog.content_json = content_json
       
           if @blog.save
             render json: { status: 'success', message: 'Blog created successfully', redirect_path: "/creators/blogs/#{@blog.slug}" }

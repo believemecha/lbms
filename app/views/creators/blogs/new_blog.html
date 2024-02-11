@@ -59,7 +59,7 @@ var quill = new Quill('#editor', {
         $.ajax({
         type: 'POST',
         url: '/creators/blogs/make_creation',
-        data: JSON.stringify({title: email, content: quill.root.innerHTML}),
+        data: JSON.stringify({title: email, content: quill.root.innerHTML,content_json: quill.getContents()}),
         headers:{
             "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
             "Content-Type": "application/json"
