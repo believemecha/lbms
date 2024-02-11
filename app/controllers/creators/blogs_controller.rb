@@ -1,8 +1,9 @@
 class Creators::BlogsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:show]
 
     def index
-        @blogs = Blog.all
+      @blogs = Blog.order(created_at: :desc).includes(:user)
+      @blogs = Kaminari.paginate_array(@blogs).page(params[:page]).per(20)
     end
 
     def show

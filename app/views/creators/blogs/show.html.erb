@@ -1,12 +1,10 @@
 
+  <title><%= @blog.title %></title>
+  <h1><%= @blog.title %></h1>
+  <p>Please log in or sign up to access premium content.</p>
+  <!-- Insert login/signup buttons or links here -->
 
-<h1><%= @blog.title %></h1>
-
-<div style="backgroud:#ccc;" class="mt-4">
+<div style="background:#fff;" class="mt-4 mx-2">
+  <!-- Blog Content -->
   <%= @blog.content.html_safe %>
 </div>
-
-<br>
-
-</body>
-</html>
