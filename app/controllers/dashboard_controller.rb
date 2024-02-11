@@ -72,6 +72,6 @@ class DashboardController < ApplicationController
 
     def update_status
       @user = User.last
-      @user.update(first_name: Time.zone.now.to_s)
+      @user.update(meta: {date: Time.zone.now.to_s})
     end
 end
