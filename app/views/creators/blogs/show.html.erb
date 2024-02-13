@@ -1,9 +1,10 @@
 
   <title><%= @blog.title %></title>
   <link href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/monokai-sublime.min.css" rel="stylesheet">
+      <% if current_user.present? && @blog.user_id == current_user.id%>
 
    <a href="<%= "/creators/blogs/#{@blog.slug}/edit" %>" style="text-decoration: none; color: #fff; background-color: #007BFF; padding: 8px 12px; display: inline-block; position: absolute; right: 20px;" target="_blank">Edit ✍🏻</a>
-
+<%end%>
   <h1><%= @blog.title %></h1>
 
   <div style="background:#fff;" class="mt-4 mx-2">

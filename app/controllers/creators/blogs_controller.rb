@@ -3,7 +3,7 @@ class Creators::BlogsController < ApplicationController
 
     def index
       @blogs = Blog.order(created_at: :desc).includes(:user)
-      @blogs = Kaminari.paginate_array(@blogs).page(params[:page]).per(20)
+      @blogs = Kaminari.paginate_array(@blogs).page(params[:page]).per(4)
     end
 
     def show
