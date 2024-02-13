@@ -1,5 +1,5 @@
 class Creators::BlogsController < ApplicationController
-    before_action :authenticate_user!, except: [:show]
+    before_action :authenticate_user!, except: [:show,:index]
 
     def index
       @blogs = Blog.order(created_at: :desc).includes(:user)
