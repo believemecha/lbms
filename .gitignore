@@ -35,3 +35,5 @@
 /config/master.key
 .env
 node_modules
+# /app/assets/builds/*
+# !/app/assets/builds/.keep
