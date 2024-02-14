@@ -23,7 +23,11 @@
       <% elsif current_user.present? && current_user.partner? %>
         <%=render partial: "partials/navs/partner"%>
       <%else%>
-          <%=yield%>
+    <div class="container">
+      <p class="bg-green-500 text-white m-2"><%= notice %></p>
+      <p class="bg-red-500 text-white m-2"><%= alert %></p>
+      <%= yield %>
+    </div>
       <% end%>
   </body>
 </html>
