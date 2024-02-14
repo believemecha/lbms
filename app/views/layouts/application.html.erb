@@ -23,11 +23,25 @@
       <% elsif current_user.present? && current_user.partner? %>
         <%=render partial: "partials/navs/partner"%>
       <%else%>
-    <div class="container">
-      <p class="bg-green-500 text-white m-2"><%= notice %></p>
-      <p class="bg-red-500 text-white m-2"><%= alert %></p>
-      <%= yield %>
-    </div>
-      <% end%>
+      <div class="container">
+        <% if notice.present? %>
+          <p id="notice" class="bg-green-500 text-white m-2 p-2" style="display:none;"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p id="alert" class="bg-red-500 text-white m-2 p-2" style="display:none;"><%= alert %></p>
+        <% end %>
+        <%= yield %>
+      </div>
+      <%end%>
+      <script>
+          $(document).ready(function() {
+            if ($('#notice').length) {
+              $('#notice').slideDown('slow');
+            }
+            if ($('#alert').length) {
+              $('#alert').slideDown('slow');
+            }
+          });
+      </script>
   </body>
 </html>
