@@ -15,29 +15,29 @@ class HomeController < ApplicationController
     end
 
     def india
-        month_names = ["January", "February", "March", "April", "May"]
-        duration_data = [52, 42, 29, 51, 27]
+        # month_names = ["January", "February", "March", "April", "May"]
+        # duration_data = [52, 42, 29, 51, 27]
     
-        # Create data for the line chart
-        @call_data = [
-          { name: 'Duration of Calls', data: Hash[month_names.zip(duration_data)] }
-        ]
+        # # Create data for the line chart
+        # @call_data = [
+        #   { name: 'Duration of Calls', data: Hash[month_names.zip(duration_data)] }
+        # ]
 
-        performers = ["John Smith", "Mary Johnson", "David Williams", "Linda Jones", "Michael Brown", "Patricia Davis", "Robert Miller", "Elizabeth Wilson", "William Moore", "Susan Anderson"]
-        call_counts = [500, 600, 750, 850, 450, 700, 550, 950, 800, 700]
+        # performers = ["John Smith", "Mary Johnson", "David Williams", "Linda Jones", "Michael Brown", "Patricia Davis", "Robert Miller", "Elizabeth Wilson", "William Moore", "Susan Anderson"]
+        # call_counts = [500, 600, 750, 850, 450, 700, 550, 950, 800, 700]
     
-        @top_performers_data = performers.zip(call_counts)
+        # @top_performers_data = performers.zip(call_counts)
 
 
-        lead_sources = ["Website", "Social Media", "Referrals", "Email Campaigns", "Events"]
-        lead_counts = [300, 200, 150, 250, 100] # Replace with your actual data
+        # lead_sources = ["Website", "Social Media", "Referrals", "Email Campaigns", "Events"]
+        # lead_counts = [300, 200, 150, 250, 100] # Replace with your actual data
     
-        @lead_sources_data = lead_sources.zip(lead_counts)
+        # @lead_sources_data = lead_sources.zip(lead_counts)
 
 
-        sources = ["WhatsApp", "Text Messages", "Emails"]
-        auto_reply_counts = [50, 30, 20] # Replace with your actual auto-reply data
+        # sources = ["WhatsApp", "Text Messages", "Emails"]
+        # auto_reply_counts = [50, 30, 20] # Replace with your actual auto-reply data
     
-        @auto_reply_data = sources.zip(auto_reply_counts)
+        # @auto_reply_data = sources.zip(auto_reply_counts)
     end
 end
