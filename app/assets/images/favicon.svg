@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+<desc>Created with Fabric.js 5.2.4</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 540 540)" id="346b0cc4-b3b0-413b-a7ab-2e02797620b9"  >
+</g>
+<g transform="matrix(1 0 0 1 540 540)" id="b6dcade1-ed0f-4a0f-95dc-2a0d6978dcea"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(215,171,171); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-540" y="-540" rx="0" ry="0" width="1080" height="1080" />
+</g>
+<g transform="matrix(0 0 0 0 0 0)"  >
+<g style=""   >
+</g>
+</g>
+<g transform="matrix(1 0 0 2.58 492.83 483.33)" style="filter: url(#SVGID_291);" id="9b8c6d5e-31ba-4c18-bf08-82eb39962a29"  >
+<filter id="SVGID_291" y="-35%" height="170%" x="-23%" width="146%" >
+	<feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur>
+	<feOffset dx="12" dy="12" result="oBlur" ></feOffset>
+	<feFlood flood-color="rgb(0,0,0)" flood-opacity="1"/>
+	<feComposite in2="oBlur" operator="in" />
+	<feMerge>
+		<feMergeNode></feMergeNode>
+		<feMergeNode in="SourceGraphic"></feMergeNode>
+	</feMerge>
+</filter>
+		<text xml:space="preserve" font-family="Raleway" font-size="105" font-style="normal" font-weight="900" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(227,43,43); fill-rule: nonzero; opacity: 0.89; white-space: pre;" ><tspan x="-131.72" y="32.98" >&lt;B/&gt;</tspan></text>
+</g>
+</svg>
