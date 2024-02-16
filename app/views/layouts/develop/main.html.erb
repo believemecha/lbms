@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Think || Develop || Deploy </title>
+    <link rel="icon" type="image/png" href="<%=image_url "favicon.png"%>">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+    <%= stylesheet_link_tag "tailwind" %>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+  <body>
+      <div class="container">
+        <% if notice.present? %>
+          <p id="notice" class="bg-green-500 text-white m-2 p-2" style="display:none;"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p id="alert" class="bg-red-500 text-white m-2 p-2" style="display:none;"><%= alert %></p>
+        <% end %>
+        <%=render partial: "partials/navs/develop"%>
+      </div>
+      <script>
+          $(document).ready(function() {
+            if ($('#notice').length) {
+              $('#notice').slideDown('slow');
+            }
+            if ($('#alert').length) {
+              $('#alert').slideDown('slow');
+            }
+          });
+      </script>
+  </body>
+</html>

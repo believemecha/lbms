@@ -1,5 +1,6 @@
 class Develop::DashboardController < ApplicationController
     before_action :verify_access
+    layout "develop/main"
 
     def index
         # console
