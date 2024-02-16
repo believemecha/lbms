@@ -59,9 +59,9 @@ Rails.application.routes.draw do
 
   namespace :develop, only: [:index] do
     resources :dashboard do 
-      # collection do
-
-      # end
+      collection do
+        get :stats
+      end
     end
   end
 

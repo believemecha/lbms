@@ -41,7 +41,7 @@ class DashboardController < ApplicationController
             return
         end
 
-        redirect_to '/home' if current_user.admin?
+        redirect_to develop_dashboard_index_path if current_user.admin?
 
         redirect_to '/partner/dashboard' if current_user.partner?
 

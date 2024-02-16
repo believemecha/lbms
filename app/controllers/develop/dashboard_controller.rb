@@ -7,6 +7,10 @@ class Develop::DashboardController < ApplicationController
         # @users = User.all
     end
 
+    def stats
+
+    end
+
     private
     def verify_access
         redirect_to root_path unless current_user && current_user.admin? 
