@@ -33,8 +33,6 @@
 <div class="relative min-h-screen md:flex" data-dev-hint="container">
     <input type="checkbox" id="menu-open" class="hidden" />
 
-   
-
     <header class="bg-gray-600 text-gray-100 flex justify-between md:hidden" data-dev-hint="mobile menu bar">
         <a href="#" class="block p-4 text-white font-bold whitespace-nowrap truncate">
             Bharat.AI
@@ -51,10 +49,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </label>
-    </header>
+
+      </header>
 
     <aside id="sidebar"
-        class="bg-gray-800 text-gray-100 md:w-64 w-3/4 space-y-6 pt-6 px-0 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out  md:flex md:flex-col md:justify-between overflow-y-auto"
+        class="bg-gray-800 text-gray-100 md:w-64 w-3/4 space-y-6 pt-6 px-0 absolute inset-y-0 left-0 transform md:relative md:translate-x-0 transition duration-200 ease-in-out  md:flex md:flex-col md:justify-between overflow-y-auto z-50"
         data-dev-hint="sidebar; px-0 for frameless; px-2 for visually inset the navigation">
         <div class="w-64">
 
@@ -137,10 +136,31 @@
             </div>
     
         </div>
-
     </aside>
 
     <div class="flex-1">
+        <div class="hidden md:block w-100 bg-slate-600 py-2">
+            <button id="sidebar-toggle-button" class="hidden md:block  bg-gray-600 text-white rounded-md" onclick="toggleSidebar()">
+            <p class="mx-2 px-2">
+                <svg data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 32 128" fill="#fff"><path d="M97.092 36.078H30.908a2.111 2.111 0 0 0 0 4.222h66.184a2.111 2.111 0 0 0 0-4.222zM97.092 61.889H30.908a2.111 2.111 0 0 0 0 4.222h66.184a2.111 2.111 0 0 0 0-4.222zM97.092 87.7H30.908a2.111 2.111 0 0 0 0 4.222h66.184a2.111 2.111 0 0 0 0-4.222z"/></svg>
+            </p>
+            </button>
+        </div>
         <%=yield%>
     </div>
 </div>
+
+<script>
+    function toggleSidebar() {
+        const toogleButton = document.getElementById("sidebar-toggle-button");
+        const sidebar = document.getElementById("sidebar");
+        if(sidebar.style.display == "none"){
+            sidebar.style.display = "";
+            toogleButton.classList.add("rotate-0");
+        }
+        else{
+            sidebar.style.display = "none";
+            toogleButton.classList.add("rotate-180");
+        }
+    }
+</script>

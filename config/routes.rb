@@ -63,6 +63,11 @@ Rails.application.routes.draw do
         get :stats
       end
     end
+    resources :schools, only: [:index,:new] do 
+      collection do
+        post :create_school
+      end
+    end
   end
 
 end
