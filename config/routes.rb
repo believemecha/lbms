@@ -65,7 +65,7 @@ Rails.application.routes.draw do
     end
     resources :schools, only: [:index,:new] do 
       collection do
-        post :create_school
+        post :create_new
       end
     end
   end

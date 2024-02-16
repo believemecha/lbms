@@ -1,0 +1,45 @@
+<div class="container mx-auto">
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm text-left bg-white border border-gray-200">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-700 uppercase tracking-wider">
+            School Name
+          </th>
+          <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-700 uppercase tracking-wider">
+            Location
+          </th>
+          <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-700 uppercase tracking-wider">
+            Status
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% @schools.each do |school| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm font-medium text-gray-900"><%= school.name %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm text-gray-500"><%= school.location %></div>
+            </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                    <% case school.status
+                    when "live"
+                        %> bg-green-100 text-green-800 <% 
+                    when "hold"
+                        %> bg-yellow-100 text-yellow-800 <%
+                    when "inactive"
+                        %> bg-red-100 text-red-800 <%
+                    end %>">
+                    <%= school.status.titleize %>
+                </span> 
+          </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
