@@ -57,4 +57,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :develop, only: [:index] do
+    resources :dashboard do 
+      # collection do
+
+      # end
+    end
+  end
+
 end
