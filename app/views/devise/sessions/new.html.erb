@@ -1,7 +1,9 @@
-<div class="min-h-screen flex justify-center items-center" style="background: #fff;">
+<div class="min-h-screen flex justify-center items-center" style="background-image: url('<%=image_url "ui/pattern-white.svg"%>'); background-position: center;">
   <div class="max-w-md w-full">
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <h2 class="text-2xl text-center text-gray-900 mb-4">Login</h2>
+      <h2 class="text-2xl text-center text-gray-900 mb-4">
+        Login
+        </h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form' }) do |f| %>
         <div class="mb-4">
