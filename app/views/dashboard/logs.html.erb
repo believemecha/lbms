@@ -1,59 +1,28 @@
-<style>
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.card-style {
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s;
-}
-
-.card-style:hover {
-  transform: scale(1.04);
-}
-
-.card-title a {
-  text-decoration: none;
-  color: #333;
-}
-
-.card-title a:hover {
-  color: #007bff;
-}
-
-</style>
-
-<div class="container">
+<div class="container mx-auto">
   <!-- Pagination -->
-  <div class="text-center w-100">
+  <div class="text-center w-full">
     <%= paginate @call_logs %>
   </div>
   <%=render partial: "logs_filter"%>
-  <div class="row">
+  <div class="flex flex-wrap -mx-4">
     <% @call_logs.each do |call_log| %>
-      <div class="col-md-4 card-style">
-        <div class="card-body">
-          <h5 class="card-title"><a href="<%= 'log_detail/' + call_log.id.to_s %>"><%= call_log.phone_number %></a></h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= call_log.name || 'NA' %></h6>
-          <p class="card-text">
-            Duration (seconds): <%= call_log.duration %><br>
-            Type: <%= call_log.call_type %><br>
-            <%= time_ago_in_words(call_log.call_start_time) %> ago
-            <small> <br> <%= call_log.call_start_time.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M %p %Z') %> </small>
-          </p>
+      <div class="w-full md:w-1/3 px-4 mb-4">
+        <div class="bg-white shadow-md rounded-lg transition-transform hover:scale-104">
+          <div class="p-4">
+            <h5 class="text-xl font-bold"><a href="<%= 'log_detail/' + call_log.id.to_s %>" class="text-blue-500 hover:text-blue-700"><%= call_log.phone_number %></a></h5>
+            <h6 class="text-sm text-gray-600 mb-2"><%= call_log.name || 'NA' %></h6>
+            <p class="text-sm">
+              Duration (seconds): <%= call_log.duration %><br>
+              Type: <%= call_log.call_type %><br>
+              <%= time_ago_in_words(call_log.call_start_time) %> ago
+              <small> <br> <%= call_log.call_start_time.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %I:%M %p %Z') %> </small>
+            </p>
+          </div>
         </div>
       </div>
     <% end %>
   </div>
   <% if !@call_logs.present? %>
-    <p>Hey, we do not have your data.</p>
+    <p class="text-center">Hey, we do not have your data.</p>
   <% end %>
 </div>
-
-

@@ -33,40 +33,15 @@ data.each do |log|
 end
 %>
 
-<style>
- .call-card {
-   background-color: #f4f4f4;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   padding: 10px;
-   margin: 10px 0;
- }
-
- .incoming {
-   background-color: #d3e0f1;
-   border-color: #3498db;
- }
-
- .outgoing {
-   background-color: #d9ead3;
-   border-color: #27ae60;
- }
-
- .missed {
-   background-color: #f6c5c5;
-   border-color: #e74c3c;
- }
-</style>
-
-<div class="container mt-4" style="border: 1px solid #ccc; max-height: 400px; overflow-y: scroll; ">
- <p>Logs</p>
+<div class="container mt-4 border border-gray-300 max-h-400 overflow-y-scroll">
+  <p class="font-bold">Logs</p>
   <% messages.each do |message| %>
-    <div class="call-card <%= message[:call_type] %>">
-      <div class="row">
-        <div class="col-md-12">
-          <h5><%= message[:call_type] %></h5>
-          <p style="color: black; fomt-weight: 500;"><%= message[:duration] %>s</p>
-          <p style="color: blue"><%= message[:date] %></p>
+    <div class="call-card bg-gray-100 border border-gray-300 rounded-md p-4 my-2">
+      <div class="flex items-center">
+        <div class="w-full">
+          <h5 class="font-semibold text-lg"><%= message[:call_type] %></h5>
+          <p class="text-gray-800 font-medium"><%= message[:duration] %></p>
+          <p class="text-blue-500"><%= message[:date] %></p>
         </div>
       </div>
     </div>
