@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Call Log Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Call Log Analysis</h1>
+    
+    <p>Hello <%= @user.name %>,</p>
+
+    <p>Here is your call log analysis for the day:</p>
+
+    <ul>
+      <li>Total Calls: <%= @analysis[:total_calls] %></li>
+      <li>Average Call Duration: <%= @analysis[:average_duration] %> seconds</li>
+      <li>Longest Call: <%= @analysis[:max_duration] %> seconds</li>
+    </ul>
+
+    <h2>Insights:</h2>
+    <ul>
+      <li>You made most calls to: <%= @analysis[:top_contacts].keys.join(", ") %></li>
+      <li>You were most active during the following hours:
+        <ul>
+          <% @analysis[:call_times].each do |hour, count| %>
+            <li><%= hour %>:00 - <%= count %> calls</li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Call Patterns:</h2>
+    <ul>
+      <% @analysis[:call_patterns].each do |pattern| %>
+        <li><%= pattern %></li>
+      <% end %>
+    </ul>
+
+    <footer>
+      <p>Thank you for using our service.</p>
+    </footer>
+  </div>
+</body>
+</html>
