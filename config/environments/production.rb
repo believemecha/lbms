@@ -103,5 +103,5 @@ Rails.application.configure do
   password:             'gzzw eabf bilj dths',
   authentication:       'plain',
   enable_starttls_auto: true  }
-  config.action_mailer.default_url_options = { host: 'lbms-ajua.onrender.com' }
+  config.action_mailer.default_url_options = { host: 'jalalpur.in' }
 end
