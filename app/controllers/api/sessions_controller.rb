@@ -46,6 +46,42 @@ class Api::SessionsController < ApplicationController
     render json: { message: 'Logged out' }
   end
 
+
+  def request_reset_password
+    email = params[:email]
+    @user = User.find_by(email: email)
+    if email.present?
+        if @user.present?
+            UserMailer.password_change_otp(@user.id).deliver_now
+            render json: {status: true,message: "You will get a otp soon for resetting the password."}
+        else
+            render json: {status: false, message: "No user found for this email."}
+        end
+    else
+        render json: {status: false, message: "Please recheck the email."}
+    end
+  end
+
+  def verify_reset_password
+      otp_entered = params[:otp]
+      password = params[:password]
+      @user = User.find_by(email: params[:email])
+      if @user.present?
+        current_otp = UserOtp.find_by(user_id: @user.id,status: :generated,purpose: :reset_password)
+        if current_otp.present? && current_otp.otp == otp_entered
+          if @user.update(password: password)
+              render json: {status: true,message: "Password Reset successful. Pls Login Now."}
+          else
+              render json: {status: true,message: @user.errors.full_messages.join(" ")}
+          end
+        else
+          render json: {status: false, message: "Wrong Otp"}
+        end
+      else
+          render json: {status: false, message: "Unauthorised"}
+      end
+  end
+
   private
 
   def user_params

@@ -3,7 +3,7 @@ class UserOtp < ApplicationRecord
 
     enum purpose: {
         login_otp:0,
-        verfiy:1
+        reset_password:1
     }
 
     enum status: {
