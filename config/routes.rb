@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   post '/api/users/request_reset_password', to: 'api/sessions#request_reset_password'
   post '/api/users//verify_reset_password', to: 'api/sessions#verify_reset_password'
+  post '/api/users//update_profile', to: 'api/sessions#update_profile'
 
   namespace :creators do
     resources :blogs, only: [:index,:show,:edit] do

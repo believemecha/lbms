@@ -24,6 +24,17 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def update_profile
+    user = User.find_by(email: params[:username])
+    fcm_token = params[:fcm_token]
+    if user.present?
+      user.update(fcm_token: fcm_token) if fcm_token.present?
+      render json: { message: 'done', status: true }
+    else
+      render json: { message: 'Invalid User', status: false }
+    end
+  end
+
 
   def signup
     user = User.find_by(email: user_params[:username])

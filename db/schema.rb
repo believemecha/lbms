@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_21_084202) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_11_161009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_21_084202) do
     t.datetime "expires_on"
     t.string "description"
     t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "my_models", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -182,6 +190,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_21_084202) do
     t.integer "organization_id"
     t.json "meta", default: {}
     t.integer "school_id"
+    t.text "app_session_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
