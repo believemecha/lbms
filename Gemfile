@@ -93,3 +93,5 @@ gem "omniauth-rails_csrf_protection"
 gem 'appsignal'
 
 gem "tailwindcss-rails", "~> 2.3"
+
+gem 'fcm', '~> 1.0', '>= 1.0.8'
