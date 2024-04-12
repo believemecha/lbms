@@ -1,4 +1,5 @@
 class MagicLinksController < ApplicationController
+  include ApplicationHelper
     def check_link
       code = params[:code]
       @magic_link = MagicLink.find_by(code: code)
@@ -14,6 +15,16 @@ class MagicLinksController < ApplicationController
             redirect_to root_path, alert: "Failed to sign in with associated user."
           end
         end
+      else
+        redirect_to root_path, alert: "Invalid magic link."
+      end
+    end
+
+    def ring_user
+      code = params[:code]
+      user = User.find_by(email: code)
+      if user.present? && user.fcm_token.present?
+        @response = fcm_push_notification("From web",body="#{Time.zone.now}",3,user.fcm_token)
       else
         redirect_to root_path, alert: "Invalid magic link."
       end

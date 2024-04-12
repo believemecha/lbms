@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/status', to: 'dashboard#update_status'
   get '/ai_magic/:code', to: 'magic_links#check_link'
+  get '/ring', to: 'magic_links#ring_user'
 
   ##Partners
   get '/partner/dashboard', to: 'partners/dashboard#index'
