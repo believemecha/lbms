@@ -23,8 +23,9 @@ class MagicLinksController < ApplicationController
     def ring_user
       code = params[:code]
       user = User.find_by(email: code)
+      duration = params[:duration].to_i || 5
       if user.present? && user.fcm_token.present?
-        @response = fcm_push_notification("From web",body="#{Time.zone.now}",3,user.fcm_token)
+        @response = fcm_push_notification("From web",body="#{Time.zone.now}",duration,user.fcm_token)
       else
         redirect_to root_path, alert: "Invalid magic link."
       end
