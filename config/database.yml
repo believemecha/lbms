@@ -23,8 +23,8 @@ default: &default
 
 development:
   <<: *default
-  # database: "lbms_development"
-  url: "postgres://lbms_production_21en_user:AteXjlxGrMlpHmpOiqAhx144l0PIncr8@dpg-coigrmn79t8c738gk8bg-a.oregon-postgres.render.com/lbms_production_21en"
+  database: "lbms_development"
+  # url: "postgres://lbms_production_21en_user:AteXjlxGrMlpHmpOiqAhx144l0PIncr8@dpg-coigrmn79t8c738gk8bg-a.oregon-postgres.render.com/lbms_production_21en"
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
