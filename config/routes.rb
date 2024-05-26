@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/home", to: "home#home"
   get "/india", to: "home#india"
   post "/webhook", to: "home#webhook"
+  get "/emails", to: "home#emails"
 
 
   post 'call_logs/update_details', to: 'api/call_logs#update_details'

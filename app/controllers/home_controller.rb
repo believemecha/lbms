@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-    before_action :authenticate_user!, except: [:index,:india,:webhook]
+    before_action :authenticate_user!, except: [:index,:india,:webhook,:emails]
 
     def index
         redirect_to '/india' if !current_user.present?
@@ -46,4 +46,8 @@ class HomeController < ApplicationController
         InboundEmail.new(meta: params).save
         render json: { status: true }, status: :ok
     end   
+
+    def emails
+        @inbound_emails = InboundEmail.order(created_at: :desc).page(params[:page]).per(params[:per_page] || 10)
+    end
 end
