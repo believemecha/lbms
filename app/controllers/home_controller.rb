@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-    before_action :authenticate_user!, except: [:index,:india]
+    before_action :authenticate_user!, except: [:index,:india,:webhook]
 
     def index
         redirect_to '/india' if !current_user.present?
@@ -40,4 +40,8 @@ class HomeController < ApplicationController
     
         # @auto_reply_data = sources.zip(auto_reply_counts)
     end
+
+    def webhook
+        render json: { status: true }, status: :ok
+    end   
 end
