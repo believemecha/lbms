@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: 'dashboard#index'
   get "/home", to: "home#home"
   get "/india", to: "home#india"
-  get "/webhook", to: "home#webhook"
+  post "/webhook", to: "home#webhook"
 
 
   post 'call_logs/update_details', to: 'api/call_logs#update_details'
