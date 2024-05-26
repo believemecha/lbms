@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_11_161009) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_26_124546) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_11_161009) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inbound_emails", force: :cascade do |t|
+    t.json "meta", default: {}
+    t.json "json", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -88,14 +95,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_11_161009) do
     t.datetime "expires_on"
     t.string "description"
     t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "my_models", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -191,6 +190,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_11_161009) do
     t.json "meta", default: {}
     t.integer "school_id"
     t.text "app_session_token"
+    t.datetime "app_session_expires_at"
+    t.text "fcm_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

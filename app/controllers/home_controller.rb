@@ -42,6 +42,8 @@ class HomeController < ApplicationController
     end
 
     def webhook
+        details = params
+        InboundEmail.new(meta: params).save
         render json: { status: true }, status: :ok
     end   
 end
