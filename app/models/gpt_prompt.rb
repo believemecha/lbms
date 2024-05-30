@@ -1,21 +1,28 @@
 class GptPrompt < ApplicationRecord
-    has_one :gpt_prompt_response
+    before_create :generate_code
 
-    def get_prompt_response
-        res = gpt_prompt_response
-        if res.present?
-            return res.response
+    MAX_CONVERSATION_LIMIT = 8
+
+    def get_prompt_response(generate_next = false)
+        if conversations.length >= MAX_CONVERSATION_LIMIT
+            return conversations
         else
-            gpt_res = GptPromptResponse.new(gpt_prompt_id: id,prompt: prompt)
-            gpt_res.response = get_response(prompt)
-            gpt_res.save
-            return gpt_res.response
+            converse = conversations
+
+            next_prompt = conversations.length == 0 ? prompt : "Tell Me More"
+            response = get_next_response(next_prompt)
+            converse << {
+                "role": "assistant",
+                "content": response
+            }
+            self.update(conversations: converse)
+            return converse
         end
     end
 
     private
 
-    def get_response(prompt)
+    def get_next_response(prompt)
         key = ENV.fetch("API_KEY")
        
          # Set up the endpoint and request parameters
@@ -28,12 +35,7 @@ class GptPrompt < ApplicationRecord
          # Prepare the request body
          body = {
            "model" => "gpt-3.5-turbo",
-           "messages" => [
-             {
-               "role" => "user",
-               "content" => prompt
-             },
-           ]
+           "messages" => build_payload(prompt)
          }.to_json
        
          # Create the HTTP request
@@ -49,4 +51,19 @@ class GptPrompt < ApplicationRecord
          response_body = JSON.parse(response.body)
          response_body["choices"][0]["message"]["content"]
     end
+
+    def build_payload(next_prompt)
+        payload = conversations
+        payload << {
+            "role": "user",
+            "content": next_prompt
+        }
+        payload
+    end
+
+    def generate_code
+        self.code = SecureRandom.hex(8)
+    end
+
+
 end

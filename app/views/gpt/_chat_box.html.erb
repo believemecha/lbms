@@ -1,0 +1,22 @@
+<div id="current-answers">
+    <%@prompt.conversations.each do |conversation|%>
+        <%if conversation["role"] == "user"%>
+            <p  class="text-primary font-weight-bold">
+                <%=conversation["content"]%>
+            </p>
+        <%else%>
+            <p  class="ml-4">
+                <%= raw conversation["content"].gsub("\n", "<br>")%>
+            </p>
+        <%end%>
+    <%end%>
+    <%if @prompt.conversations.length >= GptPrompt::MAX_CONVERSATION_LIMIT%>
+        <div class="row text-danger text-center mx-2" id="moreButton">
+           <h3> You have reached the maximum limit for this conversation pls choose another one.</h3>
+        </div>
+    <%else%>
+    <div class="row mb-4">
+        <button class="btn btn-sm text-center text-white btn-primary col-md-12" onclick="refreshChat(true)" id="moreButton">Tell Me More</button>
+    </div>
+    <%end%>
+</div>

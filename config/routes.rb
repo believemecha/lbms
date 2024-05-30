@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     collection do
       post :generate_response
       get :list_prompts
+      get :chat
     end
   end
 

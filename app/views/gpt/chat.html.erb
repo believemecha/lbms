@@ -1,0 +1,148 @@
+<style>
+    .sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+</style>
+
+
+<div class="container-fluid mt-4">
+ <div class="row">
+    <div class="col-md-2">
+        <div id="main">
+            <button class="openbtn" onclick="openNav()" id="openNav">☰</button>  
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <ul id="prompt-list" class="list-group" style="max-width: 240px;">
+            <% @prompt_lists.each do |prompt| %>
+            <li class="list-group-item response-item" data-id="<%= prompt.id %>" style="cursor: pointer;"  onclick="handleResponse('<%=prompt.code%>')">
+                <%= truncate(prompt.prompt, length: 50) %>
+            </li>
+            <% end %>
+            <%if !@prompt_lists.present?%>
+                <p class="text-white">No conversations avaiable. Choose from the suggested ones.</p>
+            <%end%>
+        </ul>
+        </div>
+    </div>
+</div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <% @prompts.each do |prompt| %>
+          <div class="col-md-4 mb-3">
+            <div class="card bg-dark" style="cursor: pointer;" onclick="handleResponse('<%= prompt.code %>')">
+              <div class="card-body">
+                <p class="card-text text-white">
+                    <%= prompt.prompt %>
+                 </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="chatbox" class="p-3 border bg-light mb-4" style="max-height: 500px;overflow-y: scroll;">
+        <%if @current_prompt.present?%>
+            <p  class="text-primary font-weight-bold">
+                <%=@current_prompt.prompt%>
+            </p>
+            <div class="text-info text-center">Thinking......</div>
+        <%else%>
+         <div class="text-primary text-center">Select One of the Topics from the above list or sidebar</div>
+        <%end%>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  document.getElementById("openNav").classList.add("d-none");
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  document.getElementById("openNav").classList.remove("d-none");
+}
+
+function refreshChat(loadNext = false) {
+    const moreBtn = document.getElementById("moreButton");
+    if(moreBtn){
+        moreBtn.innerHTML = "Generating....";
+        moreBtn.disabled = true;
+    }
+
+    fetch(`/gpt/generate_response?prompt_id=<%=@current_prompt.try(:id)%>&load_next=${loadNext}`, {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("chatbox").innerHTML = data;
+      document.getElementById("moreButton").scrollIntoView({ behavior: 'smooth', block: 'end' });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+ document.addEventListener('DOMContentLoaded', function() {
+    <%if @current_prompt.present?%>
+        refreshChat(false);
+    <%end%>
+  });
+
+  function handleResponse(code){
+    window.location.href = "/gpt/chat?code="+code;
+  }
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_30_052414) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_30_095926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,11 +78,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_30_052414) do
     t.string "prompt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "conversations", default: []
+    t.string "code"
   end
 
   create_table "inbound_emails", force: :cascade do |t|
+    t.string "subject"
+    t.text "summary"
+    t.datetime "received_time"
+    t.text "content"
+    t.string "to_address"
+    t.string "from_address"
+    t.string "card_number"
+    t.string "otp"
     t.json "meta", default: {}
-    t.json "json", default: {}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -200,10 +209,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_30_052414) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.datetime "last_synced"
-    t.integer "organization_id"
     t.json "meta", default: {}
     t.integer "school_id"
+    t.datetime "last_synced"
+    t.integer "organization_id"
     t.text "app_session_token"
     t.datetime "app_session_expires_at"
     t.text "fcm_token"
