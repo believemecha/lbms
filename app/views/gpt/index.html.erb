@@ -1,0 +1,94 @@
+<!-- app/views/gpt/index.html.erb -->
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-3" id="promptsList">
+      <!-- This will be populated by the list_prompts partial -->
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <% @prompts.each do |prompt| %>
+          <div class="col-md-4 mb-3">
+            <div class="card bg-dark" style="cursor: pointer;" onclick="handleResponse(<%= prompt.id %>)">
+              <div class="card-body">
+                <p class="card-text text-white"><%= prompt.prompt %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="current-answer-box" class="p-3 border bg-light" style="max-height: 500px;overflow-y: scroll;">
+        <p id="current-prompt" class="text-primary"></p>
+        <div id="current-answers"></div>
+      </div>
+      
+      <!-- Spinner -->
+      <div id="loading-spinner" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function handleResponse(promptId) {
+    // Show the spinner
+    document.getElementById('loading-spinner').style.display = 'block';
+
+    fetch(`/gpt/generate_response?prompt_id=${promptId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Append the new answer
+      const answerDiv = document.createElement('div');
+       const formattedMessage = data.message.replace(/\n/g, '<br>');
+      answerDiv.innerHTML = `<strong class='text-primary'>${data.prompt}</strong><p>${formattedMessage}</p>`;
+      document.getElementById("current-answers").appendChild(answerDiv);
+
+      answerDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      // Hide the spinner
+      document.getElementById('loading-spinner').style.display = 'none';
+      
+      refreshResponseList();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Hide the spinner in case of error
+      document.getElementById('loading-spinner').style.display = 'none';
+    });
+  }
+
+  function refreshResponseList() {
+    fetch(`/gpt/list_prompts`, {
+      method: 'GET',
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById("promptsList").innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    refreshResponseList();
+  });
+</script>

@@ -1,0 +1,8 @@
+<h5>Responses</h5>
+      <ul id="response-list" class="list-group">
+        <% @prompt_lists.each do |response| %>
+          <li class="list-group-item response-item" data-id="<%= response.gpt_prompt_id %>" style="cursor: pointer;"  onclick="handleResponse(<%=response.gpt_prompt_id%>)">
+            <%= truncate(response.prompt, length: 50) %>
+          </li>
+        <% end %>
+</ul>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_26_124546) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_30_052414) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_26_124546) do
     t.string "code"
     t.integer "organization_id"
     t.json "meta", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gpt_prompt_responses", force: :cascade do |t|
+    t.integer "gpt_prompt_id"
+    t.string "prompt"
+    t.string "response"
+    t.json "meta", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gpt_prompts", force: :cascade do |t|
+    t.string "prompt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get "/india", to: "home#india"
   post "/webhook", to: "home#webhook"
   get "/emails", to: "home#emails"
+  get "/abc", to: "home#abc"
+
 
 
   post 'call_logs/update_details', to: 'api/call_logs#update_details'
@@ -75,6 +77,13 @@ Rails.application.routes.draw do
       collection do
         post :create_new
       end
+    end
+  end
+
+  resources :gpt, only: [:index] do
+    collection do
+      post :generate_response
+      get :list_prompts
     end
   end
 

@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-    before_action :authenticate_user!, except: [:index,:india,:webhook,:emails]
+    before_action :authenticate_user!, except: [:index,:india,:webhook,:emails,:abc]
 
     def index
         redirect_to '/india' if !current_user.present?
@@ -49,5 +49,9 @@ class HomeController < ApplicationController
 
     def emails
         @inbound_emails = InboundEmail.order(created_at: :desc).page(params[:page]).per(params[:per_page] || 10)
+    end
+
+    def abc
+        render json: InboundEmail.second_to_last.meta["home"]
     end
 end
