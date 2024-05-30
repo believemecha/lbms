@@ -16,7 +16,7 @@ class GptPrompt < ApplicationRecord
     private
 
     def get_response(prompt)
-        key = "sk-proj-iolYVKXaUGy0mm3NdbixT3BlbkFJYmxSrlGIZ5DdSvILby8F"
+        key = ENV["API_KEY"]
        
          # Set up the endpoint and request parameters
          uri = URI.parse("https://api.openai.com/v1/chat/completions")
