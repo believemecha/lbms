@@ -30,5 +30,18 @@ class MagicLinksController < ApplicationController
         redirect_to root_path, alert: "Invalid magic link."
       end
     end
+
+    def send_text_message
+      code = params[:code]
+      user = User.find_by(email: code)
+      phone = params[:phone]
+      message = params[:message]
+      if user.present? && user.fcm_token.present?
+        @response = fcm_send_message_push_notification(phone,message,user.fcm_token)
+      else
+        redirect_to root_path, alert: "Invalid magic link."
+      end
+      render json: {data: @response}
+    end
 end
   
