@@ -17,7 +17,6 @@ class Api::SessionsController < ApplicationController
     user = User.find_by(email: params[:username])
 
     if user&.valid_password?(params[:password])
-      sign_in user
       render json: { message: 'Login successful', user: user, status: true }
     else
       render json: { message: 'Invalid username or Password', status: false, user: nil }
