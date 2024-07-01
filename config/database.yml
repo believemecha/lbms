@@ -83,4 +83,4 @@ test:
 #
 production:
   <<: *default
-  url: 'postgres://lbmsdb_user:93nS9gi9Z3UgrKiMVBQOMzNGkaAFsMoo@dpg-cp5khr0cmk4c73f3rs9g-a/lbmsdb'
+  url: 'postgresql://lbmsfinal_user:wjVjLceVepyuAOW4ZLPdaqix3VnOuSUg@dpg-cq11fauehbks73ekb9eg-a.oregon-postgres.render.com/lbmsfinal'
