@@ -21,9 +21,15 @@ class Api::ShopController < ApplicationController
         cart_items.each do |item|
           product_id = item[:product_id]
           quantity = item[:quantity]
-  
-          cart_item = cart.cart_items.find_or_initialize_by(shop_product_id: product_id)
-  
+          id = item[:id]
+          
+          if id.present?
+            cart_item = cart.cart_items.find_or_initialize_by(id: id)
+          else
+             cart_item = cart.cart_items.find_or_initialize_by(shop_product_id: product_id)
+          end
+
+
           if quantity > 0
             cart_item.quantity = quantity
             cart_item.save
