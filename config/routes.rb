@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   end
 
   post '/api/users/login', to: 'api/sessions#login'
+  post '/api/users/check_and_login', to: 'api/sessions#check_and_login'
+  
   post '/api/users/signup', to: 'api/sessions#signup'
 
   post '/api/users/request_reset_password', to: 'api/sessions#request_reset_password'
