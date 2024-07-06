@@ -91,4 +91,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :shop, only: [] do
+      collection do
+        get :list_products
+        post :update_cart
+        post :cart_details
+        post :generate_order
+        get :list_orders
+      end
+    end
+  end
+
 end

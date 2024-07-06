@@ -46,6 +46,7 @@ class Api::SessionsController < ApplicationController
       new_user = User.new(email: user_params[:username],password: user_params[:password])
       new_user.last_synced = Time.zone.now - 2.days
       new_user.first_name = user_params[:username].split('@').first
+      new_user.last_name = ""
       if new_user.save
         render json: { message: 'Signed Up successfully. Pls check your email for confirmation', user: new_user, status: true }
       else

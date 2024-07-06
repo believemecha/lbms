@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :child_organizations, class_name: "Organization", foreign_key: "owner_id"
   has_many :blogs
 
+  has_one :cart
+
   VALID_TYPES = %w[Admin User Partner].freeze
 
   enum roles:{
