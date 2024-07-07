@@ -96,9 +96,10 @@ Rails.application.routes.draw do
       collection do
         get :list_products
         post :update_cart
-        post :cart_details
         post :generate_order
-        get :list_orders
+        post :order_details
+        post :cart_details
+        post :list_orders
       end
     end
   end

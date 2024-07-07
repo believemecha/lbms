@@ -18,6 +18,8 @@ class User < ApplicationRecord
 
   has_one :cart
 
+  has_many :orders
+
   VALID_TYPES = %w[Admin User Partner].freeze
 
   enum roles:{

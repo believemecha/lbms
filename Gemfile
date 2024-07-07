@@ -99,3 +99,5 @@ gem "tailwindcss-rails", "~> 2.3"
 gem 'fcm', '~> 1.0', '>= 1.0.8'
 
 gem 'rack-cors'
+
+gem 'razorpay'

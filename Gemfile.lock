@@ -101,6 +101,7 @@ GEM
     chartkick (5.0.4)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    csv (3.3.0)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -141,6 +142,10 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
     hashie (5.0.0)
+    httparty (0.22.0)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.1)
@@ -275,6 +280,8 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
+    razorpay (3.2.3)
+      httparty (~> 0.14)
     rdoc (6.5.0)
       psych (>= 4.0.0)
     redis (4.8.1)
@@ -360,6 +367,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.8)
+  razorpay
   redis (~> 4.0)
   sassc
   selenium-webdriver
