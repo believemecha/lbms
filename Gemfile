@@ -101,3 +101,7 @@ gem 'fcm', '~> 1.0', '>= 1.0.8'
 gem 'rack-cors'
 
 gem 'razorpay'
+
+# gem 'custom_email_tracker', path: '/home/bharat/Desktop/x/email_tracker'
+
+gem 'custom_email_tracker', ">= 0.1.2"

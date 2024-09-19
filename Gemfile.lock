@@ -102,6 +102,9 @@ GEM
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     csv (3.3.0)
+    custom_email_tracker (0.1.2)
+      nokogiri (>= 1.11)
+      rails (>= 5.0, < 8.0)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -354,6 +357,7 @@ DEPENDENCIES
   byebug
   capybara
   chartkick
+  custom_email_tracker (>= 0.1.2)
   debug
   devise
   faker (~> 2.17)
