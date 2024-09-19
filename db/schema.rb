@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_07_063833) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_19_121443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -221,6 +221,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_07_063833) do
     t.string "category"
     t.string "image"
     t.jsonb "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tracked_emails", force: :cascade do |t|
+    t.string "token", null: false
+    t.datetime "opened_at"
+    t.string "to_email"
+    t.string "mailer_class"
+    t.string "mailer_action"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

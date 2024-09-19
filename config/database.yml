@@ -23,10 +23,8 @@ default: &default
 
 development:
   <<: *default
-  # database: lbms2
-  url: 'postgresql://lbmsfinal_user:wjVjLceVepyuAOW4ZLPdaqix3VnOuSUg@dpg-cq11fauehbks73ekb9eg-a.oregon-postgres.render.com/lbmsfinal'
-  # url: 'postgres://lbmsdb_user:93nS9gi9Z3UgrKiMVBQOMzNGkaAFsMoo@dpg-cp5khr0cmk4c73f3rs9g-a.oregon-postgres.render.com/lbmsdb'
-  # url: "postgres://lbms_production_21en_user:AteXjlxGrMlpHmpOiqAhx144l0PIncr8@dpg-coigrmn79t8c738gk8bg-a.oregon-postgres.render.com/lbms_production_21en"
+  database: lbms2
+  # url: 'postgresql://lbms_mecha_db_user:CHgisqMnAFj7Ir4kLjU9cDR5oTFtmnKZ@dpg-crlr7e5umphs73ebt0l0-a.oregon-postgres.render.com/lbms_mecha_db'  # url: "postgres://lbms_production_21en_user:AteXjlxGrMlpHmpOiqAhx144l0PIncr8@dpg-coigrmn79t8c738gk8bg-a.oregon-postgres.render.com/lbms_production_21en"
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

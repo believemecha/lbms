@@ -1,1 +1,9 @@
-<%= yield %>
+<%= yield %>        
+        <% unless @avoid_tracking %>
+          <%
+          new_tracked_email = TrackedEmail.track_new(message.to.first, message.delivery_handler, action_name)
+          %>
+          <% if new_tracked_email.present? %>
+              <%= new_tracked_email[:image] %>
+          <% end %>
+        <% end %>

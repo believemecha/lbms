@@ -84,5 +84,11 @@ Rails.application.configure do
   password:             'gzzw eabf bilj dths',
   authentication:       'plain',
   enable_starttls_auto: true  }
-  config.action_mailer.default_url_options = {:host =>'localhost:3001'}
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
+
+  config.default_url_options = { host: 'localhost', port: 3001 }
+
+  Rails.application.routes.default_url_options[:host] = 'localhost'
+  Rails.application.routes.default_url_options[:port] = 3001
+
 end
