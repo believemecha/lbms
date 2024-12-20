@@ -79,6 +79,16 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+# production:
+#   <<: *default
+#   url: 'postgresql://lbms_user:3JqGYIsyyV0ZVyXBx6pDsvDQUIMXXcY9@dpg-cti4c62j1k6c739kh55g-a/lbms'
+
 production:
-  <<: *default
-  url: 'postgresql://lbms_user:3JqGYIsyyV0ZVyXBx6pDsvDQUIMXXcY9@dpg-cti4c62j1k6c739kh55g-a/lbms'
+  adapter: postgresql
+  encoding: unicode
+  database: lbms_db
+  username: bharat
+  password: 'password'
+  host: localhost
+  pool: 5
+
