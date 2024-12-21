@@ -4,24 +4,52 @@
 
   <div class="container my-4">
     <h1 class="text-center">Scan QR Code <%=@organization.name%></h1>
-    <div class="my-4 text-center">
-      <video id="preview" class="border" style="width: 100%; max-height: 400px;"></video>
-    </div>
-    <p id="scan-status" class="text-center text-muted">Align the QR code in front of the camera.</p>
-
-    <div class="btn btn-sm col-12 w-100 btn-warning" onclick="siwthcamera()">Switch Camera</div>
     <div class="row w-100">
-        <div class="col-md-12 text-center" id="avatarScanned">
+        <div class="col-md-6">
+            <div class="my-4 text-center">
+            <video id="preview" class="border" style="width: 100%; max-height: 400px;"></video>
+            </div>
+            <p id="scan-status" class="text-center text-muted">Align the QR code in front of the camera.</p>
+            <div class="btn btn-sm col-12 w-100 btn-warning" onclick="siwthcamera()">Switch Camera</div>
+        </div>
+        <div class="col-md-6">
+            <div class="row w-100">
+                <div class="col-md-12 text-center" id="avatarScanned">
+                </div>
+            </div>
         </div>
     </div>
+
+
   </div>
 
   <script>
+
+    function speak(text) {
+        // Check if the browser supports the Web Speech API
+        if (!window.speechSynthesis) {
+            console.error("Sorry, your browser does not support speech synthesis.");
+            return;
+        }
+
+        // Create a new SpeechSynthesisUtterance instance
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        // Set properties for the speech
+        utterance.lang = "en-US"; // Set language to English (US)
+        utterance.volume = 1; // Volume (0.0 to 1.0)
+        utterance.rate = 1; // Speed rate (0.1 to 10)
+        utterance.pitch = 1; // Pitch (0.0 to 2.0)
+
+        // Speak the text
+        window.speechSynthesis.speak(utterance);
+    }
 
     const capture_url = '/offer_organizations/<%=@organization.code%>/capture_scan'
     function showAvatar(student){
         const htmlComtent = `
             <div class="card" style="width: 18rem;">
+                <div class="text-success">Attendance Done!</div>
                 <img class="card-img-top" src="${student?.image_string}" alt="Card image cap">
                 <div class="card-body">
                     <p class="card-text">
@@ -34,6 +62,7 @@
         `;
         console.log(htmlComtent);
         document.getElementById("avatarScanned").innerHTML = htmlComtent;
+        speak(student.name + " Done Pls proceed!");
     }
 
     function captureScan(content){
@@ -55,6 +84,7 @@
             }
             else{
                 document.getElementById("scan-status").textContent = data.message;
+                speak("Invalid Qr");
             }
         })
         .catch((error) => {
