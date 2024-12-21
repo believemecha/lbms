@@ -1,0 +1,85 @@
+<h1 class="text-center my-4">Add Student to <%= @organization.name %></h1>
+
+<div class="container">
+  <form id="add-student-form" class="needs-validation shadow p-4 rounded bg-light" novalidate>
+    <div class="mb-3">
+      <label for="studentName" class="form-label">Student Name</label>
+      <input type="text" id="studentName" class="form-control" name="info" placeholder="Enter student name" required>
+      <div class="invalid-feedback">
+        Student name is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="studentClass" class="form-label">Class Name</label>
+      <input type="text" id="studentClass" class="form-control" name="class_name" placeholder="Enter class name" required>
+      <div class="invalid-feedback">
+        Class name is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="studentImage" class="form-label">Upload Image</label>
+      <input type="file" id="studentImage" class="form-control" accept="image/*" required>
+      <div class="invalid-feedback">
+        Please upload an image.
+      </div>
+    </div>
+
+    <input type="hidden" id="imageBase64" name="image">
+
+    <button type="submit" class="btn btn-primary w-100">Add Student</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('studentImage').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById('imageBase64').value = e.target.result; // Extract base64 without metadata
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  document.getElementById('add-student-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Perform validation
+    if (!this.checkValidity()) {
+      this.classList.add('was-validated');
+      return;
+    }
+
+    // Gather form data
+    const formData = new FormData();
+    formData.append('name', document.getElementById('studentName').value);
+    formData.append('info', document.getElementById('studentClass').value);
+    formData.append('image_string', document.getElementById('imageBase64').value);
+
+    // Send AJAX request
+    fetch('<%= "/offer_organizations/#{@organization.code}/students" %>', {
+      method: 'POST',
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
+        'Accept': 'application/json'
+      },
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      alert(data.message);
+    })
+    .catch(error => {
+      console.error('There was an error adding the student:', error);
+      alert('Failed to add student.');
+    });
+  });
+</script>

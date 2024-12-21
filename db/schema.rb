@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_19_121443) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_21_085212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,6 +129,33 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_19_121443) do
     t.datetime "expires_on"
     t.string "description"
     t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offer_organization_students", force: :cascade do |t|
+    t.integer "offer_organization_id"
+    t.string "name"
+    t.string "info"
+    t.text "image_string"
+    t.string "code"
+    t.string "qr_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offer_organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.text "description"
+    t.text "icon_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offer_student_scans", force: :cascade do |t|
+    t.integer "offer_organization_student_id"
+    t.integer "offer_organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

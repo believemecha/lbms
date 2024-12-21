@@ -105,3 +105,5 @@ gem 'razorpay'
 # gem 'custom_email_tracker', path: '/home/bharat/Desktop/x/email_tracker'
 
 gem 'custom_email_tracker', ">= 0.1.2"
+
+gem 'rqrcode'

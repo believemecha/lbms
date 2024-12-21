@@ -1,0 +1,92 @@
+<link rel="preload" href="http://www.google.com/jsapi" as="script">
+
+    <script src="https://cdn.jsdelivr.net/gh/schmich/instascan-builds/instascan.min.js"></script>
+
+  <div class="container my-4">
+    <h1 class="text-center">Scan QR Code <%=@organization.name%></h1>
+    <div class="my-4 text-center">
+      <video id="preview" class="border" style="width: 100%; max-width: 400px;"></video>
+    </div>
+    <p id="scan-status" class="text-center text-muted">Align the QR code in front of the camera.</p>
+
+    <div class="row w-100">
+        <div class="col-md-12 text-center" id="avatarScanned">
+        </div>
+    </div>
+  </div>
+
+  <script>
+
+    const capture_url = '/offer_organizations/<%=@organization.code%>/capture_scan'
+    function showAvatar(student){
+        const htmlComtent = `
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="${student?.image_string}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">
+                    ${student.name}
+                    <br>
+                    ${student.info}
+                    </p>
+                </div>
+            </div>
+        `;
+        console.log(htmlComtent);
+        document.getElementById("avatarScanned").innerHTML = htmlComtent;
+    }
+
+    function captureScan(content){
+
+        fetch(capture_url, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify({ qr_data: content }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data,"data");
+            if(data.status){
+                showAvatar(data?.student);
+                document.getElementById("scan-status").textContent = "Success!, Pls Scan Next";
+            }
+            else{
+                document.getElementById("scan-status").textContent = data.message;
+            }
+        })
+        .catch((error) => {
+        
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof Instascan === "undefined") {
+        alert("Instascan library failed to load. Please check your internet connection or library source.");
+        return;
+      }
+
+      const videoElement = document.getElementById("preview");
+      const scanStatusElement = document.getElementById("scan-status");
+
+      const scanner = new Instascan.Scanner({ video: videoElement });
+
+      scanner.addListener("scan", (content) => {
+        captureScan(content);
+      });
+
+      Instascan.Camera.getCameras()
+        .then((cameras) => {
+          if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+          } else {
+            scanStatusElement.textContent = "No cameras found. Please connect a camera.";
+          }
+        })
+        .catch((error) => {
+          console.error("Camera error:", error);
+          scanStatusElement.textContent = "Error accessing the camera. Please try again.";
+        });
+    });
+  </script>

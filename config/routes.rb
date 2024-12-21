@@ -104,4 +104,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :offer_organizations, only: [:show] do
+    member do
+      get 'new_student', to: 'offer_organizations#new_student'
+      get 'students_list', to: 'offer_organizations#students_list'
+      post 'students', to: 'offer_organizations#add_student'
+      get :scan
+      post :capture_scan
+    end
+  end
+
 end

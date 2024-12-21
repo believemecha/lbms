@@ -22,15 +22,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  adapter: postgresql
-  encoding: unicode
-  database: lbms_db
-  username: bharat
-  password: 'password'
-  host: localhost
-  pool: 5
-  # <<: *default
-  # database: lbms2
+  <<: *default
+  database: lbms2
   # url: 'postgresql://lbms_mecha_db_user:CHgisqMnAFj7Ir4kLjU9cDR5oTFtmnKZ@dpg-crlr7e5umphs73ebt0l0-a.oregon-postgres.render.com/lbms_mecha_db'  # url: "postgres://lbms_production_21en_user:AteXjlxGrMlpHmpOiqAhx144l0PIncr8@dpg-coigrmn79t8c738gk8bg-a.oregon-postgres.render.com/lbms_production_21en"
 
   # The specified database role being used to connect to postgres.
