@@ -103,7 +103,7 @@ Rails.application.configure do
   password:             'gzzw eabf bilj dths',
   authentication:       'plain',
   enable_starttls_auto: true  }
-  config.action_mailer.default_url_options = { host: 'jalalpur.in' }
+  config.action_mailer.default_url_options = { host: 'code.wearelive.in', protocol: 'https' }
 
-  Rails.application.routes.default_url_options[:host] = "jalalpur.in"
+  Rails.application.routes.default_url_options[:host] = "code.wearelive.in"
 end
