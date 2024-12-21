@@ -9,6 +9,7 @@
     </div>
     <p id="scan-status" class="text-center text-muted">Align the QR code in front of the camera.</p>
 
+    <div class="btn btn-sm col-12 w-100 btn-warning" onclick="siwthcamera()">Switch Camera</div>
     <div class="row w-100">
         <div class="col-md-12 text-center" id="avatarScanned">
         </div>
@@ -78,8 +79,12 @@
 
       Instascan.Camera.getCameras()
         .then((cameras) => {
+         let index  = parseInt("<%=params[:camera] || 0%>");
           if (cameras.length > 0) {
-            scanner.start(cameras[0]);
+            if(!cameras[index]){
+                index = 0;
+            }
+            scanner.start(cameras[index]);
           } else {
             scanStatusElement.textContent = "No cameras found. Please connect a camera.";
           }
@@ -89,4 +94,13 @@
           scanStatusElement.textContent = "Error accessing the camera. Please try again.";
         });
     });
+
+
+    function siwthcamera(){
+        let newCamera = 1;
+        if("<%=params[:camera]%>" == "1"){
+            newCamera = 0;
+        }
+        window.location.href = window.location.href.split("?camera=")[0] + "?camera=" + `${newCamera}`;
+    }
   </script>
